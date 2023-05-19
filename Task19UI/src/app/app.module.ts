@@ -7,16 +7,21 @@ import { StartPageComponent } from './components/start-page/start-page.component
 import { TestsPageComponent } from './components/tests-page/tests-page.component';
 import { CatalogPageComponent } from './components/catalog-page/catalog-page.component';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
     TestsPageComponent,
-    CatalogPageComponent
+    CatalogPageComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
