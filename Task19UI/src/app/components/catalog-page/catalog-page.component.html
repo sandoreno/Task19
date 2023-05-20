@@ -8,7 +8,7 @@
     <div class="container header__container">
       <h1 class="header__title">Поиск занятий</h1>
       <div class="search__area">
-        <input type="search" class="header__search">
+        <input type="text" name="search" class="header__search" [(ngModel)]="searchText">
         <button class="search__btn btn-reset">
           Найти
         </button>
@@ -36,28 +36,28 @@
 
   <main>
     <div class="container cards__container">
-      <ul class="cards__list list-reset">
-        <li class="card">
-          <h5 class="card-header">Образование</h5>
+      <ul class="cards__list list-reset" >
+        <li class="card" *ngFor="let item of English_language | filter: searchText">
+          <h5 class="card-header">{{item.title}}</h5>
           <div class="card-body">
-            <h5 class="card-title">Английский язык</h5>
+            <h5 class="card-title">{{item.name}}</h5>
             <ul class="filter__group list-reset">
               <li class="filter__item">
-                <p class="filter__component">Очный формат</p>
+                <p class="filter__component">{{item.filters[0]}}</p>
               </li>
               <li class="filter__item">
-                <p class="filter__component">Группа занимается</p>
+                <p class="filter__component">{{item.filters[1]}}</p>
               </li>
               <li class="filter__item">
-                <p class="filter__component">Запись продолжается</p>
+                <p class="filter__component">{{item.filters[2]}}</p>
               </li>
             </ul>
             <div class="address__group">
-              <p class="card-text card__address">город Москва, улица Мусы Джалия, дом 25А</p>
+              <p class="card-text card__address">{{item.address}}</p>
               <button class="show-map btn-reset">Показать на карте</button>
             </div>
-            <p class="group__number"><b>Группа</b> G-02069387</p>
-            <p class="group__time">Вт 11:15-13:15</p>
+            <p class="group__number"><b>Группа</b> {{item.group}}</p>
+            <p class="group__time">{{item.day}} {{item.start_time}}-{{item.end_time}}</p>
             <div class="cards__btns">
               <a href="#" class="btn btn-primary enroll-btn">Записаться</a>
               <button class="btn-reset">Узнать больше</button>
@@ -65,27 +65,27 @@
           </div>
         </li>
 
-        <li class="card">
-          <h5 class="card-header">Образование</h5>
+        <li class="card" *ngFor="let item of Walk | filter: searchText">
+          <h5 class="card-header">{{item.title}}</h5>
           <div class="card-body">
-            <h5 class="card-title">Английский язык</h5>
+            <h5 class="card-title">{{item.name}}</h5>
             <ul class="filter__group list-reset">
               <li class="filter__item">
-                <p class="filter__component">Очный формат</p>
+                <p class="filter__component">{{item.filters[0]}}</p>
               </li>
               <li class="filter__item">
-                <p class="filter__component">Группа занимается</p>
+                <p class="filter__component">{{item.filters[1]}}</p>
               </li>
               <li class="filter__item">
-                <p class="filter__component">Запись продолжается</p>
+                <p class="filter__component">{{item.filters[2]}}</p>
               </li>
             </ul>
             <div class="address__group">
-              <p class="card-text card__address">город Москва, улица Мусы Джалия, дом 25А</p>
+              <p class="card-text card__address">{{item.address}}</p>
               <button class="show-map btn-reset">Показать на карте</button>
             </div>
-            <p class="group__number"><b>Группа</b> G-02069387</p>
-            <p class="group__time">Вт 11:15-13:15</p>
+            <p class="group__number"><b>Группа</b> {{item.group}}</p>
+            <p class="group__time">{{item.day}} {{item.start_time}}-{{item.end_time}}</p>
             <div class="cards__btns">
               <a href="#" class="btn btn-primary enroll-btn">Записаться</a>
               <button class="btn-reset">Узнать больше</button>
@@ -93,27 +93,27 @@
           </div>
         </li>
 
-        <li class="card">
-          <h5 class="card-header">Образование</h5>
+        <li class="card" *ngFor="let item of Drive | filter: searchText">
+          <h5 class="card-header">{{item.title}}</h5>
           <div class="card-body">
-            <h5 class="card-title">Английский язык</h5>
+            <h5 class="card-title">{{item.name}}</h5>
             <ul class="filter__group list-reset">
               <li class="filter__item">
-                <p class="filter__component">Очный формат</p>
+                <p class="filter__component">{{item.filters[0]}}</p>
               </li>
               <li class="filter__item">
-                <p class="filter__component">Группа занимается</p>
+                <p class="filter__component">{{item.filters[1]}}</p>
               </li>
               <li class="filter__item">
-                <p class="filter__component">Запись продолжается</p>
+                <p class="filter__component">{{item.filters[2]}}</p>
               </li>
             </ul>
             <div class="address__group">
-              <p class="card-text card__address">город Москва, улица Мусы Джалия, дом 25А</p>
+              <p class="card-text card__address">{{item.address}}</p>
               <button class="show-map btn-reset">Показать на карте</button>
             </div>
-            <p class="group__number"><b>Группа</b> G-02069387</p>
-            <p class="group__time">Вт 11:15-13:15</p>
+            <p class="group__number"><b>Группа</b> G-0safas387</p>
+            <p class="group__time">{{item.day}} {{item.start_time}}-{{item.end_time}}</p>
             <div class="cards__btns">
               <a href="#" class="btn btn-primary enroll-btn">Записаться</a>
               <button class="btn-reset">Узнать больше</button>

@@ -9,6 +9,7 @@ import { CatalogPageComponent } from './components/catalog-page/catalog-page.com
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { CustomFilterPipe } from './modules/custom_filter/custom-filter-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,13 @@ import { FormsModule } from '@angular/forms';
     StartPageComponent,
     TestsPageComponent,
     CatalogPageComponent,
+    CustomFilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgSelectModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
