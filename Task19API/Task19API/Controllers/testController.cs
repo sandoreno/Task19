@@ -25,9 +25,9 @@ namespace Task19API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<User?>> GetUsers(int id)
+        public async Task<ActionResult<List<User?>?>> GetUsers(string sex)
         {
-            var users = await _context.Users.FindAsync(id);
+            var users = await _context.Users.Where(x => x.Sex == sex).ToListAsync();
             return users;
         }
     }
