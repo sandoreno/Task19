@@ -6,7 +6,6 @@ namespace Task19API.Models;
 public partial class Group
 {
     public int UniqueNumber { get; set; }
-
     public string? DirectionOne { get; set; }
     public string? DirectionTwo { get; set; }
     public string? DirectionThree { get; set; }
