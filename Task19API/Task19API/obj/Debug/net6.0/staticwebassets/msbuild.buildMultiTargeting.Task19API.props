@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Task19API.props" />
+</Project>
