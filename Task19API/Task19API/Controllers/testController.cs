@@ -18,14 +18,14 @@ namespace Task19API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Group>> GetGroups(int id)
+        public async Task<ActionResult<Group?>> GetGroups(int id)
         {
             var users = await _context.Groups.FindAsync(id);
             return users;
         }
 
         [HttpGet]
-        public async Task<ActionResult<User>> GetUsers(int id)
+        public async Task<ActionResult<User?>> GetUsers(int id)
         {
             var users = await _context.Users.FindAsync(id);
             return users;
