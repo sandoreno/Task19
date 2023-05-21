@@ -3803,27 +3803,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ayazk\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Данила\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Task19\\Task19\\Task19API\\Task19API\\Task19API.csproj",
+      "projectUniqueName": "C:\\dev\\Task19\\Task19API\\Task19API\\Task19API.csproj",
       "projectName": "Task19API",
-      "projectPath": "C:\\Task19\\Task19\\Task19API\\Task19API\\Task19API.csproj",
-      "packagesPath": "C:\\Users\\ayazk\\.nuget\\packages\\",
-      "outputPath": "C:\\Task19\\Task19\\Task19API\\Task19API\\obj\\",
+      "projectPath": "C:\\dev\\Task19\\Task19API\\Task19API\\Task19API.csproj",
+      "packagesPath": "C:\\Users\\Данила\\.nuget\\packages\\",
+      "outputPath": "C:\\dev\\Task19\\Task19API\\Task19API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\ayazk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Данила\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -3896,7 +3889,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

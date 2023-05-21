@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(op =>
 {
     // тянем настройку подключения к бд
-    op.UseNpgsql(builder.Configuration.GetConnectionString("EmployeeAppCon"));
+    op.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 
