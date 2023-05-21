@@ -7,11 +7,11 @@ namespace Task19API.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public virtual DbSet<Group> Groups { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
-        public virtual DbSet<Scrobble> Scrobbles { get; set; }
+        public DbSet<Scrobble> Scrobbles { get; set; }
 
-        public virtual DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
