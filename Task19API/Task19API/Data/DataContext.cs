@@ -8,7 +8,7 @@ namespace Task19API.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Dict> Dicts { get; set; }
-        public DbSet<Group> Groups { get; set; }
+        public DbSet<Groups> Groups { get; set; }
 
         public DbSet<Scrobble> Scrobbles { get; set; }
 
@@ -16,7 +16,7 @@ namespace Task19API.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Group>(entity =>
+            modelBuilder.Entity<Groups>(entity =>
             {
                 entity.HasKey(e => e.UniqueNumber).HasName("groups__pkey");
 
