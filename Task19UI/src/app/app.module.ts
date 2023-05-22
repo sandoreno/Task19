@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { TestsPageComponent } from './components/tests-page/tests-page.component';
 import { CatalogPageComponent } from './components/catalog-page/catalog-page.component';
-
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { CustomFilterPipe } from './modules/custom_filter/custom-filter-pipe.pipe';
+import { Comp_Dir } from './directive/comp.directive'
 
 @NgModule({
   declarations: [
@@ -17,7 +16,8 @@ import { CustomFilterPipe } from './modules/custom_filter/custom-filter-pipe.pip
     StartPageComponent,
     TestsPageComponent,
     CatalogPageComponent,
-    CustomFilterPipe
+    CustomFilterPipe,
+    Comp_Dir
   ],
   imports: [
     BrowserModule,

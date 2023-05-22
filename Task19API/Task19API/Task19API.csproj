@@ -22,9 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Configuration\" />
-    <Folder Include="Service\Interfaces\" />
   </ItemGroup>
 
 </Project>
