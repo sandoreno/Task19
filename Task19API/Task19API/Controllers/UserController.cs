@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Text.RegularExpressions;
 using Task19API.Data;
 using Task19API.DTOs;
@@ -21,10 +22,26 @@ namespace Task19API.Controllers
             _userGroup = userGroup;
         }
 
-        [HttpPost("/UserGroups")]
-        public async Task<ActionResult<List<int>>> GetUsersGroup([FromQuery]UserDataDTO userDTO)
+        [HttpPost("/getUser")]
+        public async Task<ActionResult<List<int>>> GetUsersGroup(UserDataResponse user)
         {
-            return await _userGroup.GetUserGroups(userDTO);
+            try
+            {
+                // получаем юзера по входным данным
+                var userId = await _userGroup.GetUser(user);
+                if (userId == null)
+                {
+                    throw new Exception("not user");
+                }
+                else {
+                    var groups = await _userGroup.GetUserGroups((int)userId);
+                    return Ok(groups);
+                }
+            }
+            catch (Exception ex)
+            { 
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

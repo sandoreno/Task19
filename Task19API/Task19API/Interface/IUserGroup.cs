@@ -7,6 +7,8 @@ namespace Task19API.Interface
 {
     public interface IUserGroup
     {
-        public Task<ActionResult<List<int>>> GetUserGroups(UserDataDTO userDTO);
+        public Task<List<int>> GetUserGroups(int userId);
+
+        public Task<int?> GetUser(UserDataResponse user);
     }
 }
