@@ -15,7 +15,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<IUserGroup, UserGroupService>();
+builder.Services.AddTransient<IUser, UserIdentifyService>();
+builder.Services.AddTransient<IUserGroups, UserGroupsService>();
 
 //подключение к бд
 builder.Services.AddDbContext<DataContext>(op =>

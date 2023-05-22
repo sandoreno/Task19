@@ -5,10 +5,8 @@ using Task19API.Models;
 
 namespace Task19API.Interface
 {
-    public interface IUserGroup
+    public interface IUser
     {
-        public Task<List<int>> GetUserGroups(int userId);
-
         public Task<int?> GetUser(UserDataResponse user);
     }
 }
