@@ -13,12 +13,10 @@ namespace Task19API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly DataContext _context;
         private readonly IUser _userGroup;
 
-        public UserController(DataContext context, IUser userGroup)
+        public UserController(IUser userGroup)
         {
-            _context = context;
             _userGroup = userGroup;
         }
 
