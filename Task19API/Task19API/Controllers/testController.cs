@@ -25,10 +25,10 @@ namespace Task19API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User?>?>> GetUsers(string sex)
+        public async Task<ActionResult<List<Dict?>?>> GetUsers(int level1)
         {
-            var users = await _context.Users.Where(x => x.Sex == sex).ToListAsync();
-            return users;
+            var dictList = await _context.Dicts.Where(x => x.IdLevel1 == level1).ToListAsync();
+            return dictList;
         }
     }
 }
