@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\Task19\\Task19API\\Task19API\\Task19API.csproj": {}
+    "C:\\Users\\Arzhchil\\Desktop\\Hackaton\\Task19\\Task19API\\Task19API\\Task19API.csproj": {}
   },
   "projects": {
-    "C:\\dev\\Task19\\Task19API\\Task19API\\Task19API.csproj": {
+    "C:\\Users\\Arzhchil\\Desktop\\Hackaton\\Task19\\Task19API\\Task19API\\Task19API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\Task19\\Task19API\\Task19API\\Task19API.csproj",
+        "projectUniqueName": "C:\\Users\\Arzhchil\\Desktop\\Hackaton\\Task19\\Task19API\\Task19API\\Task19API.csproj",
         "projectName": "Task19API",
-        "projectPath": "C:\\dev\\Task19\\Task19API\\Task19API\\Task19API.csproj",
-        "packagesPath": "C:\\Users\\Данила\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\Task19\\Task19API\\Task19API\\obj\\",
+        "projectPath": "C:\\Users\\Arzhchil\\Desktop\\Hackaton\\Task19\\Task19API\\Task19API\\Task19API.csproj",
+        "packagesPath": "C:\\Users\\Arzhchil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Arzhchil\\Desktop\\Hackaton\\Task19\\Task19API\\Task19API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Данила\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Arzhchil\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
