@@ -7,6 +7,7 @@ namespace Task19API.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
+        public DbSet<Dict> Dicts { get; set; }
         public DbSet<Group> Groups { get; set; }
 
         public DbSet<Scrobble> Scrobbles { get; set; }
@@ -33,6 +34,24 @@ namespace Task19API.Data
                 entity.Property(e => e.SiteAddress).HasColumnName("site_address");
                 entity.Property(e => e.SiteArea).HasColumnName("site_area");
                 entity.Property(e => e.SiteDistrict).HasColumnName("site_district");
+            });
+
+            modelBuilder.Entity<Dict>(entity =>
+            {
+                entity
+                    .HasNoKey()
+                    .ToTable("dict");
+
+                entity.Property(e => e.Category).HasColumnName("category");
+                entity.Property(e => e.DLevel1).HasColumnName("d_level1");
+                entity.Property(e => e.DLevel2).HasColumnName("d_level2");
+                entity.Property(e => e.DLevel3).HasColumnName("d_level3");
+                entity.Property(e => e.IdLevel1).HasColumnName("id_level1");
+                entity.Property(e => e.IdLevel2).HasColumnName("id_level2");
+                entity.Property(e => e.IdLevel3).HasColumnName("id_level3");
+                entity.Property(e => e.Level1).HasColumnName("level1");
+                entity.Property(e => e.Level2).HasColumnName("level2");
+                entity.Property(e => e.Level3).HasColumnName("level3");
             });
 
             modelBuilder.Entity<Scrobble>(entity =>
