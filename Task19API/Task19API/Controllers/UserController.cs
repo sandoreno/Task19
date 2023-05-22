@@ -14,16 +14,16 @@ namespace Task19API.Controllers
     public class UserController : ControllerBase
     {
         private readonly DataContext _context;
-        private readonly IUserGroup _userGroup;
+        private readonly IUser _userGroup;
 
-        public UserController(DataContext context, IUserGroup userGroup)
+        public UserController(DataContext context, IUser userGroup)
         {
             _context = context;
             _userGroup = userGroup;
         }
 
         [HttpPost("/getUser")]
-        public async Task<ActionResult<List<int>>> GetUsersGroup(UserDataResponse user)
+        public async Task<ActionResult<int>> UserIdentify(UserDataResponse user)
         {
             try
             {
@@ -33,10 +33,7 @@ namespace Task19API.Controllers
                 {
                     throw new Exception("not user");
                 }
-                else {
-                    var groups = await _userGroup.GetUserGroups((int)userId);
-                    return Ok(groups);
-                }
+                return Ok(userId);
             }
             catch (Exception ex)
             { 

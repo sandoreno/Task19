@@ -8,11 +8,11 @@ using Task19API.Models;
 
 namespace Task19API.Service
 {
-    public class UserGroupService : IUserGroup
+    public class UserIdentifyService : IUser
     {
         private readonly DataContext _context;
 
-        public UserGroupService(DataContext context)
+        public UserIdentifyService(DataContext context)
         {
             _context = context;
         }
@@ -34,22 +34,11 @@ namespace Task19API.Service
                 //    .FirstOrDefaultAsync();
                 return userId;
             }
-            catch (Exception ex) { 
+            catch (Exception ex) 
+            { 
                 Console.WriteLine(ex.Message);
                 return null;
             }
-
-
-        }
-
-        public async Task<List<int>> GetUserGroups(int userId)
-        {
-            var groups = await _context.Scrobbles.Where(x => x.UserId == userId)
-                .Include(g => g.Group)
-                .Select(g => g.Group.UniqueNumber)
-                .ToListAsync();
-            
-            return groups;
         }
     }
 }
