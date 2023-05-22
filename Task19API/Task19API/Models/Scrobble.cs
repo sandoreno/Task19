@@ -8,6 +8,6 @@ public partial class Scrobble
     public int? UserId { get; set; }
     public int? GroupId { get; set; }
     public int? Scrobbles { get; set; }
-    public Group? Group { get; set; }
+    public Groups? Group { get; set; }
     public User? User { get; set; }
 }

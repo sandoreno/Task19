@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Task19API.Models;
 
-public partial class Group
+public partial class Groups
 {
     public int UniqueNumber { get; set; }
     public string? DirectionOne { get; set; }

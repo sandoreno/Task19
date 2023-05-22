@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Task19API.Data;
+using Task19API.Interface;
+using Task19API.Service;
 using Task19API.Service.ConnectionService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +15,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddTransient<IUserGroup, UserGroupService>();
 
 //подключение к бд
 builder.Services.AddDbContext<DataContext>(op =>
