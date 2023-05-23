@@ -9,6 +9,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { CustomFilterPipe } from './modules/custom_filter/custom-filter-pipe.pipe';
 import { Comp_Dir } from './directive/comp.directive'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { Comp_Dir } from './directive/comp.directive'
     AppRoutingModule,
     NgSelectModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
