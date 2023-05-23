@@ -11,7 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ]
 })
-export class CatalogPageModule { }
+export class RegistryModule { }

@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomFilterPipe } from './modules/custom_filter/custom-filter-pipe.pipe';
 import { Comp_Dir } from './directive/comp.directive'
 import { HttpClientModule } from '@angular/common/http';
+import { RegistryModule } from './shared/modals/registry-modal/registry.module';
 
 @NgModule({
   declarations: [
