@@ -31,6 +31,10 @@ namespace Task19API.Controllers
                 {
                     throw new Exception("not user");
                 }
+
+                using var client = new HttpClient();
+
+                var result = await client.GetAsync($"http://localhost:8000/{userId}/10");
                 return Ok(userId);
             }
             catch (Exception ex)

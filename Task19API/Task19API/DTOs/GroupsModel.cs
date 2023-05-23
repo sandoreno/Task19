@@ -3,9 +3,9 @@ using Task19API.Models;
 
 namespace Task19API.DTOs
 {
-    public class GroupDTO
+    public class GroupModel
     {
-        public GroupDTO(Groups group)
+        public GroupModel(Groups group)
         {
             DirectionOne = group.DirectionOne;
             DirectionTwo = group.DirectionTwo;

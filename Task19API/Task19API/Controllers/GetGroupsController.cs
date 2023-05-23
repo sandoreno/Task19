@@ -34,7 +34,7 @@ namespace Task19API.Controllers
         }
 
         [HttpPost("/getUniqueNumber")]
-        public async Task<ActionResult<List<GroupDTO>>> UniqueNumber(List<int> uniqueIds)
+        public async Task<ActionResult<List<GroupModel>>> UniqueNumber(List<int> uniqueIds)
         {
             try
             {
@@ -50,7 +50,6 @@ namespace Task19API.Controllers
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
-            
         }
     }
 }
