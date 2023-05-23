@@ -64,6 +64,7 @@ export class StartPageComponent {
     t.modalRef
       .result.then((result) => {
         if (result) {
+          //записываем полученное значение из модалки
           t.user = result;
         }
       });
