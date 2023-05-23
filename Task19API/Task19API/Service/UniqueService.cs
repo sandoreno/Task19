@@ -15,11 +15,11 @@ namespace Task19API.Service
         {
             _context = context;
         }
-        public async Task<List<GroupDTO>> uniqueIds(List<int> ids)
+        public async Task<List<GroupModel>> uniqueIds(List<int> ids)
         {
             var uniqueGroups = await _context.Groups
                 .Where(x => ids.Contains(x.UniqueNumber))
-                .Select(x => new GroupDTO(x))
+                .Select(x => new GroupModel(x))
                 .ToListAsync();
 
             return uniqueGroups;

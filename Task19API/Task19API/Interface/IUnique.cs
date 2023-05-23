@@ -5,6 +5,6 @@ namespace Task19API.Interface
 {
     public interface IUnique
     {
-        public Task<List<GroupDTO>> uniqueIds(List<int> ids);
+        public Task<List<GroupModel>> uniqueIds(List<int> ids);
     }
 }
