@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { UserModel } from 'src/app/shared/models';
+import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal';
 
 @Component({
   selector: 'app-start-page',
@@ -7,7 +10,12 @@ import { Component } from '@angular/core';
 })
 export class StartPageComponent {
 
+  public modalRef: NgbModalRef | undefined;
   condition: boolean = true;
+  public user: UserModel = new UserModel;
+  constructor(
+    private modalService: NgbModal
+  ){}
   toggle() {
     this.condition = !this.condition;
   }
@@ -40,4 +48,24 @@ export class StartPageComponent {
       status: ["", "ОНЛАЙН"]
     },
   ];
+
+  public async ShowRegistryModal() {
+    let t = this;
+
+    // todo: вывести инфу о комиссии сети в модалке подтверждения
+    t.modalRef = t.modalService.open(RegistryModal,
+      {
+        modalDialogClass: 'main-modal-custom',
+        centered: true,
+        size: 'lg',
+        windowClass: 'super-modal-delete-users very-nice-shadow',
+        animation: true
+      });
+    t.modalRef
+      .result.then((result) => {
+        if (result) {
+          t.user = result;
+        }
+      });
+  }
 }
