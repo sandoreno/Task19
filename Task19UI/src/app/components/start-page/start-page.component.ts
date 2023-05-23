@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { lastValueFrom } from 'rxjs';
+import { UserModel } from 'src/app/shared/models';
+import { UserService } from 'src/app/shared/services';
+import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal';
 
 @Component({
   selector: 'app-start-page',
@@ -7,7 +12,14 @@ import { Component } from '@angular/core';
 })
 export class StartPageComponent {
 
+  public id: any;
+  public modalRef: NgbModalRef;
   condition: boolean = true;
+  //public user: UserModel = new UserModel;
+  constructor(
+    private modalService: NgbModal,
+    private userService: UserService
+  ){}
   toggle() {
     this.condition = !this.condition;
   }
@@ -40,4 +52,39 @@ export class StartPageComponent {
       status: ["", "ОНЛАЙН"]
     },
   ];
+
+  public async ShowRegistryModal() {
+    let t = this;
+
+    // todo: вывести инфу о комиссии сети в модалке подтверждения
+    t.modalRef = t.modalService.open(RegistryModal,
+      {
+        modalDialogClass: 'main-modal-custom',
+        centered: true,
+        size: 'lg',
+        windowClass: 'super-modal-delete-users very-nice-shadow',
+        animation: true
+      });
+    t.modalRef
+      .result.then((result) => {
+        if (result) {
+          //записываем полученное значение из модалки
+          //t.user = result;
+          t.registerUser(result);
+        }
+      });
+  }
+
+  public async registerUser(user: UserModel){
+    let t = this;
+    await lastValueFrom(t.userService.RegisterUser(user))
+    .then(response => {
+      t.id = response;
+    })
+    .catch(ex => {
+      console.log(ex)
+    })
+    .finally(()=>{
+    })
+  }
 }

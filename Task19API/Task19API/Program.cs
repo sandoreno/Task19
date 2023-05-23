@@ -17,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IUser, UserIdentifyService>();
 builder.Services.AddTransient<IUserGroups, UserGroupsService>();
+builder.Services.AddTransient<IUnique, UniqueService>();
 
 //подключение к бд
 builder.Services.AddDbContext<DataContext>(op =>

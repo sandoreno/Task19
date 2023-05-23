@@ -76,9 +76,9 @@
   <p class="recommend__text">
     Пройдите тест и узнайте, какие направления подходят именно вам.
   </p>
-  <div *ngIf="condition; else elseBlock"></div>
-  <button type="button" class="btn btn-primary btn-lg recommend__btn" (click)="show()">Подобрать занятие</button>
-  <ng-template #thenBlock></ng-template>
+  <!-- <div *ngIf="condition; else elseBlock"></div> -->
+  <button type="button" class="btn btn-primary btn-lg recommend__btn" (click)="ShowRegistryModal()">Подобрать занятие</button>
+  <!-- <ng-template #thenBlock></ng-template>
   <ng-template #elseBlock>
     <div class="modal__container">
       <form action="" class="form">
@@ -94,5 +94,5 @@
         </svg>
       </button>
     </div>
-  </ng-template>
+  </ng-template> -->
 </div>

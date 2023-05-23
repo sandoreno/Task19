@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { GroupModelDTO } from 'src/app/shared/models';
+import { GroupService } from 'src/app/shared/services';
 
 @Component({
   selector: 'app-tests-page',
@@ -6,7 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./tests-page.component.scss']
 })
 export class TestsPageComponent {
+  groups: GroupModelDTO[] = [];
 
+  constructor(private groupService: GroupService){}
 
   question = [
     {id: 0, value: "Как назвать самца божьей коровки?"},
@@ -17,5 +22,17 @@ export class TestsPageComponent {
     {id: 5, value: "Нужен ли поварской колпак лысому? "},
   ];
 
+  public async getAllGroups() {
+    let t = this;
+    await lastValueFrom(t.groupService.GetAllgroups())
+    .then(response => {
+      t.groups = response;
+    })
+    .catch(ex => {
+      console.log(ex)
+    })
+    .finally(()=>{
+    })
+  }
 }
 

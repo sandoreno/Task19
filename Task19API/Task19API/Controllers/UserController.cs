@@ -13,12 +13,10 @@ namespace Task19API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly DataContext _context;
         private readonly IUser _userGroup;
 
-        public UserController(DataContext context, IUser userGroup)
+        public UserController(IUser userGroup)
         {
-            _context = context;
             _userGroup = userGroup;
         }
 
@@ -33,6 +31,10 @@ namespace Task19API.Controllers
                 {
                     throw new Exception("not user");
                 }
+
+                using var client = new HttpClient();
+
+                var result = await client.GetAsync($"http://localhost:8000/{userId}/10");
                 return Ok(userId);
             }
             catch (Exception ex)

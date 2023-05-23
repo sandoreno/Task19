@@ -28,10 +28,6 @@ namespace Task19API.Service
                 var random = new Random();
                 var Id = random.Next(0, countUser);
                 var userId = countUsers[Id].UniqueNumber;
-                //var userId = await _context.Users
-                //    .Where(x => x.UniqueNumber == Id)
-                //    .Select(x => x.UniqueNumber)
-                //    .FirstOrDefaultAsync();
                 return userId;
             }
             catch (Exception ex) 
