@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { lastValueFrom } from 'rxjs';
 import { UserModel } from 'src/app/shared/models';
+import { UserService } from 'src/app/shared/services';
 import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal';
 
 @Component({
@@ -10,11 +12,13 @@ import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal
 })
 export class StartPageComponent {
 
-  public modalRef: NgbModalRef | undefined;
+  public id: any;
+  public modalRef: NgbModalRef;
   condition: boolean = true;
-  public user: UserModel = new UserModel;
+  //public user: UserModel = new UserModel;
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private userService: UserService
   ){}
   toggle() {
     this.condition = !this.condition;
@@ -65,8 +69,22 @@ export class StartPageComponent {
       .result.then((result) => {
         if (result) {
           //записываем полученное значение из модалки
-          t.user = result;
+          //t.user = result;
+          t.registerUser(result);
         }
       });
+  }
+
+  public async registerUser(user: UserModel){
+    let t = this;
+    await lastValueFrom(t.userService.RegisterUser(user))
+    .then(response => {
+      t.id = response;
+    })
+    .catch(ex => {
+      console.log(ex)
+    })
+    .finally(()=>{
+    })
   }
 }

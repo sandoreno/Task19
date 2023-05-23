@@ -13,19 +13,36 @@
                         <h1 class="text-center">Заполните данные</h1>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <input type="text" class="main-input" placeholder="Введите ваше Ф.И.О.">
+                <form [formGroup]="userForm">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="main-input" placeholder="Фамилия" formControlName="middleName" autofocus="">
+                            <label *ngIf="checkIsInvalid(userForm.controls['middleName'])" class="text-danger">Поле обязательно для заполнения</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input type="date" class="main-input">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="main-input" placeholder="Имя" formControlName="firstName" autofocus="">
+                            <label *ngIf="checkIsInvalid(userForm.controls['firstName'])" class="text-danger">Поле обязательно для заполнения</label>
+                        </div>
                     </div>
-                </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="main-input" placeholder="Отчество" formControlName="lastName" autofocus="">
+                            <label *ngIf="checkIsInvalid(userForm.controls['lastName'])" class="text-danger">Поле обязательно для заполнения</label>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="dateOfBirth">Дата рождения</label>
+                            <input type="date" id="dateOfBirth" class="main-input" formControlName="dateOfBirth">
+                            <label *ngIf="checkIsInvalid(userForm.controls['dateOfBirth'])" class="text-danger">Поле обязательно для заполнения</label>
+                        </div>
+                    </div>
+                </form>
                 <div class="row">
                     <div class="col">
-                        <button type="date" class="btn btn-primary btn-lg">Отправить</button>
+                        <button class="btn btn-primary btn-lg" (click)="SendUserIindo()">Отправить</button>
                     </div>
                 </div>
             </div>
