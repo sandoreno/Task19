@@ -3,8 +3,8 @@ using Task19API.DTOs;
 
 namespace Task19API.Interface
 {
-    public interface IUnique
+    public interface IGroupDescription
     {
-        public Task<List<GroupModel>> uniqueIds(List<int> ids);
+        public Task<List<GroupModel>> groupsDesc(List<int> ids);
     }
 }
