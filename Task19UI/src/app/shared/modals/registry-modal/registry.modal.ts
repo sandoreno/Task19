@@ -22,14 +22,14 @@ export class RegistryModal implements OnInit{
             firstName: ['', Validators.required],
             middleName: ['', Validators.required],
             lastName: ['', Validators.required],
-            dateOfBirth: ['', Validators.required]
+            birthDate: ['', Validators.required]
         });
     }
 
     get firstName() { return this.userForm.get('firstName');}
     get middleName() { return this.userForm.get('middleName');}
     get lastName() { return this.userForm.get('lastName');}
-    get dateOfBirth() {return this.userForm.get('dateOfBirth');}
+    get birthDate() {return this.userForm.get('birthDate');}
 
     ngOnInit(): void {
     }
@@ -39,7 +39,7 @@ export class RegistryModal implements OnInit{
           control.markAsTouched();
           control.markAsDirty();
           control.updateValueAndValidity();
-    
+
           if (control.controls) {
             this.markFormGroupTouchedAndDirty(control);
           }
@@ -55,7 +55,7 @@ export class RegistryModal implements OnInit{
         t.user.firstName = t.firstName.value;
         t.user.middleName = t.middleName.value;
         t.user.lastName = t.lastName.value;
-        t.user.dateOfBirth = t.dateOfBirth.value;
+        t.user.birthDate = t.birthDate.value;
         t.activeModal.close(t.user);
     }
 

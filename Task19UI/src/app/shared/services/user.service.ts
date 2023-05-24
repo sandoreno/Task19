@@ -10,12 +10,12 @@ import { UserModel } from '../models';
 })
 export class UserService {
   errorMessage: String = "HttpError";
- private url = "/user/";
+ private url = "/getUser";
 
   constructor(private http: HttpClient) { }
 
   public RegisterUser(user: UserModel) : Observable<UserModel> {
-    return this.http.post<UserModel>(environment.apiUrl + this.url + "/registeruser", user);
+    return this.http.post<UserModel>(environment.apiUrl + this.url, user);
   }
 }
 

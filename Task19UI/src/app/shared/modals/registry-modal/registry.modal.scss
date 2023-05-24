@@ -1,15 +1,61 @@
-.modal-container{
-    border-radius: 3rem;
-    background-color: white;
-    padding: 3rem;
+.modal-container {
+  border-radius: 3rem;
+  background-color: white;
+  padding: 3rem;
 }
 
-.main-input{
-    border-radius: 2rem;
-    width: 100%;
-    padding: 1rem 1.5rem;
+.main-input {
+  border-radius: 2rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
 }
 
-.form_close{
-    background-color: transparen;
+.form_close {
+  background-color: transparent;
+}
+
+.modal__tile {
+  font-size: 3rem;
+  color: rgba(13, 110, 253);
+  ;
+  margin-bottom: 20px;
+}
+
+.main-input {
+  cursor: pointer;
+  color: rgba(13, 110, 253);
+  font-size: 18px;
+  border: 1px solid rgba(13, 110, 253, 0.8);
+}
+
+.main-input:focus {
+  border: 2px solid rgba(13, 110, 253);
+  outline: none;
+}
+
+.main-input:focus::placeholder {
+  color: rgba(13, 110, 253);
+}
+
+.main-input::placeholder {
+  color: rgba(13, 110, 253, 0.8);
+}
+
+.dateofbirth {
+  color: rgba(13, 110, 253, 0.95);
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.submit__col {
+  display: flex;
+  justify-content: center;
+}
+
+.submit__btn {
+  padding: 12px 44px;
+}
+
+.float-end {
+  cursor: pointer;
 }
