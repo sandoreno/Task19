@@ -35,7 +35,8 @@ namespace Task19API.Controllers
                 using var client = new HttpClient();
 
                 var result = await client.GetAsync($"http://localhost:8000/{userId}/10");
-                return Ok(userId);
+                var content = await result.Content.ReadAsStringAsync();
+                return Ok(content);
             }
             catch (Exception ex)
             { 
