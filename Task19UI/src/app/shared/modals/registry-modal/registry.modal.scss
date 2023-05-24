@@ -1,57 +1,15 @@
-.modal-container {
-  border-radius: 3rem;
-  background-color: white;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-
+.modal-container{
+    border-radius: 3rem;
+    background-color: white;
+    padding: 3rem;
 }
 
-.main-input {
-  border: 1px solid rgba(13, 110, 253, 0.6);
-  border-radius: 1.5rem;
-  width: 100%;
-  margin-bottom: 1.5rem;
-  padding: 1rem 1.5rem;
-  color: rgba(13, 110, 253);
-  font-size: 20px;
+.main-input{
+    border-radius: 2rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
 }
 
-.main-input::placeholder {
-  color: rgba(13, 110, 253, 0.8);
-}
-
-.main-input:focus {
-  border: 2px solid rgba(13, 110, 253, 1);
-  outline: none;
-}
-
-.modal__title {
-  margin: 0;
-  margin-bottom: 1.5rem;
-  color: rgba(13, 110, 253, 0.9);
-}
-
-.form_close {
-  background-color: transparen;
-}
-
-.float-end {
-  cursor: pointer;
-  opacity: 0.8;
-  transition: opacity .3s ease-in-out;
-}
-
-.float-end:hover {
-  opacity: 1;
-}
-
-.submit__col {
-  display: flex;
-  justify-content: center;
-}
-
-.submit__btn {
-  padding: 15px 50px;
-  font-size: 20px;
+.form_close{
+    background-color: transparen;
 }

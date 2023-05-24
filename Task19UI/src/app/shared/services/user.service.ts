@@ -3,18 +3,19 @@ import { GroupModelDTO } from '../models/models';
 import { environment } from 'src/enviroments/enviroment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { UserModel } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GroupService {
+export class UserService {
   errorMessage: String = "HttpError";
- private url = "/group/";
+ private url = "/user/";
 
   constructor(private http: HttpClient) { }
 
-  public GetAllgroups() : Observable<GroupModelDTO[]> {
-    return this.http.get<GroupModelDTO[]>(environment.apiUrl + this.url + "/getallgroups");
+  public RegisterUser(user: UserModel) : Observable<UserModel> {
+    return this.http.post<UserModel>(environment.apiUrl + this.url + "/registeruser", user);
   }
 }
 

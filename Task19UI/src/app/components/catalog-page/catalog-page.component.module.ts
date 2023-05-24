@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-//import { CatalogPageComponent } from './catalog-page.component';
+import { CatalogPageComponent } from './catalog-page.component';
 import { CatalogPageRoutingModule } from './catalog-page.component.routing-module';
 
 @NgModule({
   declarations: [
-    //CatalogPageComponent
+    CatalogPageComponent
   ],
   imports: [
     CommonModule,
