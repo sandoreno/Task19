@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { UserModel } from 'src/app/shared/models';
 import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal';
+import { GroupService } from 'src/app/shared/services';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-start-page',
@@ -9,20 +11,49 @@ import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal
   styleUrls: ['./start-page.component.scss']
 })
 export class StartPageComponent {
-
+  forFuture: any
   public modalRef: NgbModalRef | undefined;
-  condition: boolean = true;
   public user: UserModel = new UserModel;
   constructor(
-    private modalService: NgbModal
-  ){}
-  toggle() {
-    this.condition = !this.condition;
+    private modalService: NgbModal,
+    private groupService: GroupService
+  ) {}
+
+  public async ShowRegistryModal() {
+    let t = this;
+
+    // todo: вывести инфу о комиссии сети в модалке подтверждения
+    t.modalRef = t.modalService.open(RegistryModal,
+      {
+        modalDialogClass: 'main-modal-custom',
+        centered: true,
+        size: 'lg',
+        windowClass: 'super-modal-delete-users very-nice-shadow',
+        animation: true,
+      });
+
+    t.modalRef
+      .result.then((result) => {
+        if (result) {
+          //записываем полученное значение из модалки
+          t.user = result;
+        }
+      });
   }
 
-  show() {
-    this.condition = false;
-  }
+  public async postUserModel() {
+
+    let t = this;
+    await lastValueFrom(t.groupService.PostUserModel())
+    .then(response => {
+      t.forFuture = response;
+    })
+    .catch(ex => {
+      console.log(ex)
+    })
+    .finally(()=>{
+    })
+  };
 
   events_education = [
     {
@@ -48,25 +79,4 @@ export class StartPageComponent {
       status: ["", "ОНЛАЙН"]
     },
   ];
-
-  public async ShowRegistryModal() {
-    let t = this;
-
-    // todo: вывести инфу о комиссии сети в модалке подтверждения
-    t.modalRef = t.modalService.open(RegistryModal,
-      {
-        modalDialogClass: 'main-modal-custom',
-        centered: true,
-        size: 'lg',
-        windowClass: 'super-modal-delete-users very-nice-shadow',
-        animation: true
-      });
-    t.modalRef
-      .result.then((result) => {
-        if (result) {
-          //записываем полученное значение из модалки
-          t.user = result;
-        }
-      });
-  }
 }

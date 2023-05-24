@@ -10,8 +10,9 @@ import { UserModel } from '../../models';
 
 export class RegistryModal implements OnInit{
     constructor(
-        public activeModal: NgbActiveModal
+        public activeModal: NgbActiveModal,
     ){}
+
 
     ngOnInit(): void {
     }
