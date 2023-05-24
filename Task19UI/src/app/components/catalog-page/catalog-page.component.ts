@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { EventFormat } from 'src/app/shared/constants';
+import { GroupService } from 'src/app/shared/services';
 
 
 @Component({
@@ -6,8 +9,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './catalog-page.component.html',
   styleUrls: ['./catalog-page.component.scss'],
 })
-export class CatalogPageComponent {
-  searchText: any
+export class CatalogPageComponent implements OnInit {
+  searchText: any;
+  visitHistory: any[];
+  public eventFormat = EventFormat;
+  constructor(private groupService: GroupService){
+
+  }
+  ngOnInit(): void {
+    let t = this;
+    t.getAllGroups()
+  }
 
   works = [
     { id: 0, name: "Футбол" },
@@ -80,6 +92,12 @@ export class CatalogPageComponent {
   itemSelected(e: any) {
     console.log(e);
   }
+
+
+  public getAllGroups(){
+    //получить все рекомендованные мероприятия по id юзера
+  }
+
 }
 
 
