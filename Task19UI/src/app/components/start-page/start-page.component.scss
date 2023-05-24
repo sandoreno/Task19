@@ -5,7 +5,6 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  font-family: "Montserrat", sans-serif;
   padding-left: 10px;
   margin-bottom: 15px;
 }
@@ -35,7 +34,6 @@
   margin-bottom: 15px;
 }
 
-
 .card__title {
   font-weight: bold;
   font-size: 21px;
@@ -53,75 +51,4 @@
 
 .list__item:not(:last-child) {
   margin-bottom: 15px;
-}
-
-.modal__container {
-  position: absolute;
-  top: 30%;
-  z-index: 2;
-  left: 29%;
-  width: 40vw;
-  height: 100%;
-  max-height: 300px;
-  background-color: rgba(142, 142, 149, 0.9);
-  color: #f2f2f2;
-  overflow: hidden;
-  border-radius: 16px;
-  animation: fade 0.3s ease-in-out;
-}
-
-.form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 12px 25px;
-  width: 100%;
-}
-
-.form__title {
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.form__input {
-  max-width: 385px;
-  width: 100%;
-  border-radius: 16px;
-  padding: 10px;
-  outline: none;
-  border: none;
-  margin-bottom: 20px;
-}
-
-.form__input:last-of-type {
-  margin-bottom: 38px;
-}
-
-.form__btn {
-  padding: 12px 18px;
-  border-radius: 8px;
-  border: none;
-}
-
-.form_close {
-  position: absolute;
-  top: 5%;
-  right: 2%;
-  width: 40px;
-  height: 40px;
-  border: none;
-  fill: white;
-  background-color: transparent;
-  opacity: 0.8;
-}
-
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }

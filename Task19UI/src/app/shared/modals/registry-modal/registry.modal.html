@@ -10,7 +10,7 @@
             <div class="modal-container">
                 <div class="row">
                     <div class="col">
-                        <h1 class="text-center">Заполните данные</h1>
+                        <h1 class="text-center modal__tile">Заполните данные</h1>
                     </div>
                 </div>
                 <form [formGroup]="userForm">
@@ -34,15 +34,15 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="dateOfBirth">Дата рождения</label>
-                            <input type="date" id="dateOfBirth" class="main-input" formControlName="dateOfBirth">
-                            <label *ngIf="checkIsInvalid(userForm.controls['dateOfBirth'])" class="text-danger">Поле обязательно для заполнения</label>
+                            <label for="birthDate" class="birthDate">Дата рождения</label>
+                            <input type="date" id="birthDate" class="main-input" formControlName="birthDate">
+                            <label *ngIf="checkIsInvalid(userForm.controls['birthDate'])" class="text-danger">Поле обязательно для заполнения</label>
                         </div>
                     </div>
                 </form>
                 <div class="row">
-                    <div class="col">
-                        <button class="btn btn-primary btn-lg" (click)="SendUserIindo()">Отправить</button>
+                    <div class="col submit__col">
+                        <button class="btn btn-primary btn-lg submit__btn" (click)="SendUserIindo()">Отправить</button>
                     </div>
                 </div>
             </div>

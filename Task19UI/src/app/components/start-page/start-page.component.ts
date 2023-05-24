@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { lastValueFrom } from 'rxjs';
 import { UserModel } from 'src/app/shared/models';
@@ -15,7 +15,6 @@ export class StartPageComponent {
   public id: any;
   public modalRef: NgbModalRef;
   condition: boolean = true;
-  //public user: UserModel = new UserModel;
   constructor(
     private modalService: NgbModal,
     private userService: UserService
@@ -69,7 +68,6 @@ export class StartPageComponent {
       .result.then((result) => {
         if (result) {
           //записываем полученное значение из модалки
-          //t.user = result;
           t.registerUser(result);
         }
       });
@@ -80,6 +78,7 @@ export class StartPageComponent {
     await lastValueFrom(t.userService.RegisterUser(user))
     .then(response => {
       t.id = response;
+      console.log(t.id)
     })
     .catch(ex => {
       console.log(ex)
@@ -87,4 +86,5 @@ export class StartPageComponent {
     .finally(()=>{
     })
   }
+
 }
