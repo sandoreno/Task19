@@ -8,6 +8,6 @@ namespace Task19API.DTOs
         public int? GroupId { get; set; }
         public int? Scrobbles { get; set; }
         public GroupModel? Group { get; set; }
-        public UserDTO? User { get; set; }
+        public UserFilter? User { get; set; }
     }
 }

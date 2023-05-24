@@ -7,15 +7,15 @@ using Task19API.Models;
 
 namespace Task19API.Service
 {
-    public class UniqueService : IUnique
+    public class DescService : IGroupDescription
     {
         private readonly DataContext _context;
 
-        public UniqueService(DataContext context)
+        public DescService(DataContext context)
         {
             _context = context;
         }
-        public async Task<List<GroupModel>> uniqueIds(List<int> ids)
+        public async Task<List<GroupModel>> groupsDesc(List<int> ids)
         {
             var uniqueGroups = await _context.Groups
                 .Where(x => ids.Contains(x.UniqueNumber))
@@ -24,5 +24,6 @@ namespace Task19API.Service
 
             return uniqueGroups;
         }
+        
     }
 }
