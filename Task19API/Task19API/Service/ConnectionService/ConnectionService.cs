@@ -1,4 +1,6 @@
-﻿namespace Task19API.Service.ConnectionService
+﻿using Task19API.Interface;
+
+namespace Task19API.Service.ConnectionService
 {
     public static class ConnectionService
     {
@@ -9,6 +11,9 @@
         public static void ConnectService(WebApplicationBuilder builder)
         {
             //builder.Services.AddTransient<ITutorialInterface, TutorialService>();
+            builder.Services.AddTransient<IUser, UserIdentifyService>();
+            builder.Services.AddTransient<IUserGroups, UserGroupsService>();
+            builder.Services.AddTransient<IUnique, UniqueService>();
         }
     }
 }
