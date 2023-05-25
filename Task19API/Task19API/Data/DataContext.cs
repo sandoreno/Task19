@@ -8,6 +8,7 @@ namespace Task19API.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<Answertolvl> Answertolvls { get; set; }
         public DbSet<Dict> Dicts { get; set; }
         public DbSet<Groups> Groups { get; set; }
         public DbSet<Question> Questions { get; set; }
@@ -26,15 +27,28 @@ namespace Task19API.Data
                     .ValueGeneratedNever()
                     .HasColumnName("id");
                 entity.Property(e => e.Answer1).HasColumnName("answer");
-                entity.Property(e => e.CategoryId).HasColumnName("category_id");
-                entity.Property(e => e.GroupId).HasColumnName("group_id");
                 entity.Property(e => e.LevelId).HasColumnName("level_id");
                 entity.Property(e => e.QuestionId).HasColumnName("question_id");
 
-                entity.HasOne(d => d.Question).WithOne(p => p.Answer)
-                    .HasForeignKey<Answer>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("answer_id_fkey");
+                entity.HasOne(d => d.Question).WithMany(p => p.Answer)
+                    .HasForeignKey(d => d.QuestionId)
+                    .HasConstraintName("answer_question_id_fkey");
+            });
+            modelBuilder.Entity<Answertolvl>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("answertolvl_pkey");
+
+                entity.ToTable("answertolvl");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+                entity.Property(e => e.AnswerId).HasColumnName("answer_id");
+                entity.Property(e => e.GroupId).HasColumnName("group_id");
+
+                entity.HasOne(d => d.Answer).WithMany(p => p.Answertolvl)
+                    .HasForeignKey(d => d.AnswerId)
+                    .HasConstraintName("answertolvl_answer_id_fkey");
             });
             modelBuilder.Entity<Question>(entity =>
             {
