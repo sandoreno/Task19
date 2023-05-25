@@ -12,11 +12,15 @@ namespace Task19API.Controllers
     {
         private readonly IUserGroups _userGroups;
         private readonly IGroupDescription _desc;
+        private readonly IGroupResponse _response;
 
-        public GetGroupsController(IUserGroups userGroups, IGroupDescription desc)
+        public GetGroupsController(IUserGroups userGroups,
+                                   IGroupDescription desc,
+                                   IGroupResponse response)
         {
             _userGroups = userGroups;
             _desc = desc;
+            _response = response;
         }
 
         [HttpPost("/getGroups")]
@@ -28,18 +32,11 @@ namespace Task19API.Controllers
                 var visitedDesc = await _desc.groupsDesc(visitedGroups);
 
                 using var client = new HttpClient();
-                var scrobbles = await client.GetAsync($"http://localhost:8000/recommend{user.UniqueNumber}/10");
-                var recommendation = await scrobbles.Content.ReadAsStringAsync();
-                recommendation = recommendation.Replace("[", "").Replace("]", "");
+                var scrobbles = await client.GetAsync($"http://localhost:8000/recommend/{user.UniqueNumber}/10");
 
-                var splitedRequest = recommendation.Split(",").Select(x => Convert.ToInt32(x)).ToList();
-                var scrobbleGroups = await _desc.groupsDesc(splitedRequest); //splitedRequest here
-
-                var groupResponse = new UserGroupsResponse();
-                groupResponse.ScrobbleRecommendation = scrobbleGroups;
-                groupResponse.visitedGroups = visitedDesc;
-
-                return Ok(groupResponse);
+                var userGroups = _response.Response(visitedDesc, scrobbles);
+                
+                return Ok(userGroups);
             }
             catch(Exception ex)
             {
