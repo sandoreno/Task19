@@ -10,29 +10,29 @@ import { GroupService } from 'src/app/shared/services';
 })
 export class TestsPageComponent {
   groups: GroupModelDTO[] = [];
+  isChecked: boolean = false;
 
   constructor(private groupService: GroupService){}
 
-  question = [
-    {id: 0, value: "Как назвать самца божьей коровки?"},
-    {id: 1, value: "Почему бублики готовят с дырками?"},
-    {id: 2, value: "Почему в сказке о репке только у собаки есть имя?"},
-    {id: 3, value: "Почему девушки открывают рот, когда красят ресницы? "},
-    {id: 4, value: "На чьей одежде в семье можно сэкономить? "},
-    {id: 5, value: "Нужен ли поварской колпак лысому? "},
+  questions = [
+    { id: 0, value: "Прикладное творчество" },
+    { id: 1, value: "Клубная деятельность" },
+    { id: 2, value: "Игры" },
+    { id: 3, value: "Физическая активность" },
+    { id: 4, value: "Образование" },
   ];
 
-  public async getAllGroups() {
-    let t = this;
-    await lastValueFrom(t.groupService.GetAllgroups())
-    .then(response => {
-      t.groups = response;
-    })
-    .catch(ex => {
-      console.log(ex)
-    })
-    .finally(()=>{
-    })
-  }
+  //public async getAllGroups() {
+  //  let t = this;
+  //  await lastValueFrom(t.groupService.GetAllgroups())
+  //  .then(response => {
+  //    t.groups = response;
+  //  })
+  //  .catch(ex => {
+  //    console.log(ex)
+  //  })
+  //  .finally(()=>{
+  //  })
+  //}
 }
 

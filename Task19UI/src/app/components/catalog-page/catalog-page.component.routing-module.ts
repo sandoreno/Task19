@@ -1,6 +1,5 @@
 import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { CatalogPageComponent } from './catalog-page.component';
 
 const routes: Routes = [

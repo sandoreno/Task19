@@ -1,8 +1,9 @@
+import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { EventFormat } from 'src/app/shared/constants';
+import { EventDays, EventFormat, EventTimes } from 'src/app/shared/constans';
+import { EventModel, GroupModelDTO } from 'src/app/shared/models';
 import { GroupService } from 'src/app/shared/services';
-
 
 @Component({
   selector: 'app-catalog-page',
@@ -11,43 +12,57 @@ import { GroupService } from 'src/app/shared/services';
 })
 export class CatalogPageComponent implements OnInit {
   searchText: any;
-  visitHistory: any[];
+  event: EventModel = new EventModel;
+
+  eventModels: EventModel[] = [];
+  groups: GroupModelDTO[] = [];
+
   public eventFormat = EventFormat;
-  constructor(private groupService: GroupService){
+  public eventDays = EventDays;
+  public eventTimes = EventTimes;
+
+  constructor(private groupService: GroupService) {
 
   }
   ngOnInit(): void {
-    let t = this;
-    t.getAllGroups()
+    //let t = this;
+    //t.getAllGroups(t.eventModels)
   }
+
+  //public async getAllGroups(event) {
+  //  debugger
+  //  let t = this;
+  //  await lastValueFrom(t.groupService.RegisterEvent(event))
+  //    .then(response => {
+  //      t.event = response;
+  //      console.log(t.event)
+  //    })
+  //    .catch(ex => {
+  //      console.log(ex)
+  //    })
+  //    .finally(() => {
+  //    })
+  //}
+
+  //получить все рекомендованные мероприятия по id юзера
+  //  debugger;
+  //  let t = this;
+  //  await lastValueFrom(t.groupService.GetAllgroups())
+  //    .then(response => {
+  //      t.groups = response;
+  //      console.log(t.groups)
+  //    })
+  //    .catch(ex => {
+  //      console.log(ex)
+  //    })
+  //    .finally(() => {
+  //    })
+  //}
 
   works = [
     { id: 0, name: "Футбол" },
     { id: 1, name: "Баскетбол" },
     { id: 2, name: "Волейбол" }
-  ];
-
-  format = [
-    { id: 0, name: "Очный" },
-    { id: 1, name: "Дистант" },
-  ];
-
-  days = [
-    { id: 0, name: "Понедельник" },
-    { id: 1, name: "Вторник" },
-    { id: 2, name: "Среда" },
-    { id: 3, name: "Четверг" },
-    { id: 4, name: "Пятница" },
-    { id: 5, name: "Суббота" },
-    { id: 6, name: "Воскресенье" },
-  ];
-
-  times = [
-    { id: 0, name: "9:15" },
-    { id: 1, name: "11:15" },
-    { id: 2, name: "13:15" },
-    { id: 3, name: "15:15" },
-    { id: 4, name: "17:15" },
   ];
 
   English_language = [
@@ -91,11 +106,6 @@ export class CatalogPageComponent implements OnInit {
 
   itemSelected(e: any) {
     console.log(e);
-  }
-
-
-  public getAllGroups(){
-    //получить все рекомендованные мероприятия по id юзера
   }
 
 }
