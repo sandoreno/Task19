@@ -5,18 +5,6 @@ namespace Task19API.DTOs
 {
     public class GroupModel
     {
-        public GroupModel(Groups group)
-        {
-            DirectionOne = group.DirectionOne;
-            DirectionTwo = group.DirectionTwo;
-            DirectionThree = group.DirectionThree;
-            SiteAddress = group.SiteAddress;
-            SiteDistrict = group.SiteDistrict;
-            SiteArea = group.SiteArea;
-            ActivePeriod = group.ActivePeriod;
-            ClosePeriod = group.ClosePeriod;
-            PlanPeriod = group.PlanPeriod;
-        }
         public string? DirectionOne { get; set; }
         public string? DirectionTwo { get; set; }
         public string? DirectionThree { get; set; }
