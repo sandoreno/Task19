@@ -1,4 +1,4 @@
 export enum EventFormat{
-  offline = 0,
-  online = 1,
+    offline = 0,
+    online = 1
 }
