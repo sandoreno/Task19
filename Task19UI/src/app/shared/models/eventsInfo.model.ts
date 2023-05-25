@@ -1,4 +1,4 @@
-import { GroupModelDTO } from "./group.models";
+import { GroupModelDTO } from "./group.model";
 
 export class EventInfoModel {
   visitedGroups: GroupModelDTO[] = [];

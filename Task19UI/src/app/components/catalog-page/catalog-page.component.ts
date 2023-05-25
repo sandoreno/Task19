@@ -1,15 +1,9 @@
 import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-<<<<<<< HEAD
 import { EventDays, EventFormat, EventTimes } from 'src/app/shared/constans';
 import { EventModel, GroupModelDTO } from 'src/app/shared/models';
 import { GroupService } from 'src/app/shared/services';
-=======
-import { EventFormat } from 'src/app/shared/constants';
-import { GroupService } from 'src/app/shared/services';
-
->>>>>>> 881cf9248123b279f0ff72a8c50f775c603de817
 
 @Component({
   selector: 'app-catalog-page',
@@ -18,7 +12,6 @@ import { GroupService } from 'src/app/shared/services';
 })
 export class CatalogPageComponent implements OnInit {
   searchText: any;
-<<<<<<< HEAD
   event: EventModel = new EventModel;
 
   eventModels: EventModel[] = [];
@@ -65,17 +58,6 @@ export class CatalogPageComponent implements OnInit {
   //    .finally(() => {
   //    })
   //}
-=======
-  visitHistory: any[];
-  public eventFormat = EventFormat;
-  constructor(private groupService: GroupService){
-
-  }
-  ngOnInit(): void {
-    let t = this;
-    t.getAllGroups()
-  }
->>>>>>> 881cf9248123b279f0ff72a8c50f775c603de817
 
   works = [
     { id: 0, name: "Футбол" },
@@ -124,11 +106,6 @@ export class CatalogPageComponent implements OnInit {
 
   itemSelected(e: any) {
     console.log(e);
-  }
-
-
-  public getAllGroups(){
-    //получить все рекомендованные мероприятия по id юзера
   }
 
 }

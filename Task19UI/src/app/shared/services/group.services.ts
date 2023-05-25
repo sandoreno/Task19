@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GroupModelDTO } from '../models/group.models';
+import { GroupModelDTO } from '../models/group.model';
 import { EventModel } from '../models/event.model';
 import { environment } from 'src/enviroments/enviroment';
 import { Observable } from 'rxjs';

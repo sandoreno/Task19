@@ -1,4 +1,4 @@
-export * from './group.models';
+export * from './group.model';
 export * from './user.model';
 export * from './filter.model';
 export * from './event.model';
