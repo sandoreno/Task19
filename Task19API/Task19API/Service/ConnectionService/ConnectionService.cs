@@ -13,6 +13,7 @@ namespace Task19API.Service.ConnectionService
             builder.Services.AddTransient<IUser, UserIdentifyService>();
             builder.Services.AddTransient<IUserGroups, UserGroupsService>();
             builder.Services.AddTransient<IGroupDescription, DescService>();
+            builder.Services.AddAutoMapper(typeof(Program).Assembly);
         }
     }
 }
