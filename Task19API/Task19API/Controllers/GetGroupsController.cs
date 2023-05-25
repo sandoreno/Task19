@@ -27,12 +27,13 @@ namespace Task19API.Controllers
                 var visitedGroups = await _userGroups.GetUserGroups(user.UniqueNumber);
                 var visitedDesc = await _desc.groupsDesc(visitedGroups);
 
-                //using var client = new HttpClient();
-                //var scrobbles = await client.GetAsync($"http://localhost:8000/{user.UniqueNumber}/10");
-                //var recommendation = await result.Content.ReadAsStringAsync();
+                using var client = new HttpClient();
+                var scrobbles = await client.GetAsync($"http://localhost:8000/recommend{user.UniqueNumber}/10");
+                var recommendation = await scrobbles.Content.ReadAsStringAsync();
+                recommendation = recommendation.Replace("[", "").Replace("]", "");
 
-                //var splitedRequest = recommendation.Split(",").Select(x => Convert.ToInt32(x)).ToList();
-                var scrobbleGroups = await _desc.groupsDesc(new List<int> { 801357270 }); //splitedRequest here
+                var splitedRequest = recommendation.Split(",").Select(x => Convert.ToInt32(x)).ToList();
+                var scrobbleGroups = await _desc.groupsDesc(splitedRequest); //splitedRequest here
 
                 var groupResponse = new UserGroupsResponse();
                 groupResponse.ScrobbleRecommendation = scrobbleGroups;
