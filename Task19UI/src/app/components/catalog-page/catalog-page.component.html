@@ -13,15 +13,15 @@
           [multiple]="true" placeholder="Выберите направление"></ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="format" bindLabel="name" bindValue="id" (change)="itemSelected($event)"
+        <ng-select class="custom" [items]="eventFormat" bindLabel="label" bindValue="id" (change)="itemSelected($event)"
           [multiple]="true" placeholder="Выберите формат занятия"></ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="days" bindLabel="name" bindValue="id" (change)="itemSelected($event)"
+        <ng-select class="custom" [items]="eventDays" bindLabel="label" bindValue="id" (change)="itemSelected($event)"
           [multiple]="true" placeholder="Выберите день недели"></ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="times" bindLabel="name" bindValue="id" (change)="itemSelected($event)"
+        <ng-select class="custom" [items]="eventTimes" bindLabel="label" bindValue="id" (change)="itemSelected($event)"
           [multiple]="true" placeholder="Выберите время"></ng-select>
       </li>
     </ul>

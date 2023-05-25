@@ -1,39 +1,54 @@
 <div class="container test__container">
   <div class="test__content">
-    <span class="question__counter">Шаг 1 из 7</span>
-    <h1 class="question__title">Какие телепередачи вы смотрите ?</h1>
-    <div class="form-check">
-      <form action="" class="question__form">
-        <ul class="questions__list">
-          <li class="question__item list-reset">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Выпуски новостей, документальные фильмы, интеллектуальные телевикторнины
-            </label>
-          </li>
-          <li class="question__item list-reset">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-            <label class="form-check-label" for="flexRadioDefault2">
-              Различные шоу (музыкальные, танцевальные, про отношения и пр.)
-            </label>
-          </li>
-          <li class="question__item list-reset">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-            <label class="form-check-label" for="flexRadioDefault3">
-              Спортивные трансляции, передачи про здоровье
-            </label>
-          </li>
-          <li class="question__item list-reset">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-            <label class="form-check-label" for="flexRadioDefault4">
-              Интервью с интересными и успешными людьми
-            </label>
-          </li>
-        </ul>
-        <button class="question__btn">
-          Далее
-        </button>
-      </form>
+    <div class="test__head">
+      <p class="head__text">
+        Пройдите 3 уровня выбора и получите подробные рекомендации занятий
+      </p>
+      <span class="head__cnt">
+        1/3
+      </span>
     </div>
+    <h1 class="test__title">
+      Выберите категории:
+    </h1>
+    <div class="lists__wrapper" [(ngModel)]="questions" #ctrl="ngModel">
+      <ul class="test__list left__list list-reset">
+        <li class="list__item">
+          <input #myCheckbox1  class="form-check-input" type="checkbox" name="flexCheckBoxDefault1" id="{{questions[0].id}}">
+          <label  class="form-check-label" for="{{questions[0].id}}">
+            {{questions[0].value}}
+          </label>
+        </li>
+        <li class="list__item">
+          <input #myCheckbox2 class="form-check-input" type="checkbox" name="flexCheckBoxDefault2" id="{{questions[1].id}}">
+          <label  class="form-check-label" for="{{questions[1].id}}">
+            {{questions[1].value}}
+          </label>
+        </li>
+        <li class="list__item">
+          <input #myCheckbox3 class="form-check-input" type="checkbox" name="flexCheckBoxDefault3" id="{{questions[2].id}}">
+          <label  class="form-check-label" for="{{questions[2].id}}">
+            {{questions[2].value}}
+          </label>
+        </li>
+      </ul>
+      <ul class="test__list right__list list-reset">
+        <li class="list__item">
+          <input #myCheckbox4 class="form-check-input" type="checkbox" name="flexCheckBoxDefault4" id="{{questions[3].id}}">
+          <label  class="form-check-label" for="{{questions[3].id}}">
+            {{questions[3].value}}
+          </label>
+        </li>
+        <li class="list__item">
+          <input #myCheckbox5 class="form-check-input" type="checkbox" name="flexCheckBoxDefault5" id="{{questions[4].id}}">
+          <label  class="form-check-label" for="{{questions[4].id}}">
+            {{questions[4].value}}
+          </label>
+        </li>
+      </ul>
+    </div>
+    <button class="next-btn btn-reset">
+      Далее
+    </button>
   </div>
 </div>

@@ -1,51 +1,55 @@
 <a class="float-end" (click)="activeModal.dismiss()">
-    <svg width="26" height="26" viewBox="0 0 26 26">
-        <path d="M21.5 21.5L4 4M21.5 4L4 21.5" stroke="#f2f2f2" stroke-width="8" stroke-linecap="round"
-            stroke-linejoin="round" />
-    </svg>
+  <svg width="26" height="26" viewBox="0 0 26 26">
+    <path d="M21.5 21.5L4 4M21.5 4L4 21.5" stroke="#f2f2f2" stroke-width="8" stroke-linecap="round"
+      stroke-linejoin="round" />
+  </svg>
 </a>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="modal-container">
-                <div class="row">
-                    <div class="col">
-                        <h1 class="text-center modal__tile">Заполните данные</h1>
-                    </div>
-                </div>
-                <form [formGroup]="userForm">
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="text" class="main-input" placeholder="Фамилия" formControlName="middleName" autofocus="">
-                            <label *ngIf="checkIsInvalid(userForm.controls['middleName'])" class="text-danger">Поле обязательно для заполнения</label>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="text" class="main-input" placeholder="Имя" formControlName="firstName" autofocus="">
-                            <label *ngIf="checkIsInvalid(userForm.controls['firstName'])" class="text-danger">Поле обязательно для заполнения</label>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="text" class="main-input" placeholder="Отчество" formControlName="lastName" autofocus="">
-                            <label *ngIf="checkIsInvalid(userForm.controls['lastName'])" class="text-danger">Поле обязательно для заполнения</label>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="birthDate" class="birthDate">Дата рождения</label>
-                            <input type="date" id="birthDate" class="main-input" formControlName="birthDate">
-                            <label *ngIf="checkIsInvalid(userForm.controls['birthDate'])" class="text-danger">Поле обязательно для заполнения</label>
-                        </div>
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col submit__col">
-                        <button class="btn btn-primary btn-lg submit__btn" (click)="SendUserIindo()">Отправить</button>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col">
+      <div class="modal-container">
+        <div class="row">
+          <div class="col">
+            <h1 class="text-center modal__tile">Заполните данные</h1>
+          </div>
         </div>
+        <form [formGroup]="userForm">
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="main-input" placeholder="Фамилия" formControlName="middleName" autofocus="">
+              <label *ngIf="checkIsInvalid(userForm.controls['middleName'])" class="text-danger">Поле обязательно для
+                заполнения</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="main-input" placeholder="Имя" formControlName="firstName" autofocus="">
+              <label *ngIf="checkIsInvalid(userForm.controls['firstName'])" class="text-danger">Поле обязательно для
+                заполнения</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="text" class="main-input" placeholder="Отчество" formControlName="lastName" autofocus="">
+              <label *ngIf="checkIsInvalid(userForm.controls['lastName'])" class="text-danger">Поле обязательно для
+                заполнения</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="birthDate" class="birthDate">Дата рождения</label>
+              <input type="date" id="birthDate" class="main-input" formControlName="birthDate">
+              <label *ngIf="checkIsInvalid(userForm.controls['birthDate'])" class="text-danger">Поле обязательно для
+                заполнения</label>
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col submit__col">
+            <button class="btn btn-primary btn-lg submit__btn" (click)="SendUserIindo()">Отправить</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

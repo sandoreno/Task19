@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { lastValueFrom } from 'rxjs';
-import { UserModel } from 'src/app/shared/models';
-import { UserService } from 'src/app/shared/services';
+import { UserModel, GroupModelDTO, EventModel, EventInfoModel } from 'src/app/shared/models';
+import { UserService, GroupService } from 'src/app/shared/services';
 import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal';
+
 
 @Component({
   selector: 'app-start-page',
@@ -13,44 +14,21 @@ import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal
 export class StartPageComponent {
 
   public id: any;
+  eventModel: EventModel = new EventModel;
+  eventInfo: EventInfoModel = new EventInfoModel;
+  public mas: any;
+
+  visitHistory: any[];
+  recomend: any[];
+
+
   public modalRef: NgbModalRef;
   condition: boolean = true;
   constructor(
     private modalService: NgbModal,
-    private userService: UserService
+    private userService: UserService,
+    private groupService: GroupService
   ){}
-  toggle() {
-    this.condition = !this.condition;
-  }
-
-  show() {
-    this.condition = false;
-  }
-
-  events_education = [
-    {
-      name: ["Пеший лекторий", "Английскай язык", "Шахматы и шашки"],
-      status: ["", "ОНЛАЙН"]
-    },
-  ];
-  events_heal = [
-    {
-      name: ["Скандинаская ходьба", "Суставная гимнастика", "Оздоровительная гимнастика"],
-      status: ["", "ОНЛАЙН"]
-    },
-  ];
-  events_creative = [
-    {
-      name: ["Мастер-класс по уходу за кожей в зрелом возрасте", "Рисование", "Пение"],
-      status: ["", "ОНЛАЙН"]
-    },
-  ];
-  events_specially = [
-    {
-      name: ["Московский театрал", "Секреты добрососедства", "Психологические тренинги"],
-      status: ["", "ОНЛАЙН"]
-    },
-  ];
 
   public async ShowRegistryModal() {
     let t = this;
@@ -78,7 +56,9 @@ export class StartPageComponent {
     await lastValueFrom(t.userService.RegisterUser(user))
     .then(response => {
       t.id = response;
+      t.eventModel.uniqueNumber = t.id;
       console.log(t.id)
+      t.PostIdUser(t.eventModel, t.eventInfo)
     })
     .catch(ex => {
       console.log(ex)
@@ -86,5 +66,47 @@ export class StartPageComponent {
     .finally(()=>{
     })
   }
+
+  public async PostIdUser(eventModel: EventModel,  eventInfo: EventInfoModel) {
+    //debugger
+    let t = this;
+    await lastValueFrom(t.groupService.RegisterEvent(eventModel,  eventInfo))
+      .then(response => {
+        eventInfo = response
+        console.log(eventInfo.scrobbleRecommendation)
+        console.log(eventInfo.visitedGroups)
+      })
+      .catch(ex => {
+        console.log(ex)
+      })
+      .finally(() => {
+      })
+  }
+
+  events_education = [
+    {
+      name: ["Пеший лекторий", "Английскай язык", "Шахматы и шашки"],
+      status: ["", "ОНЛАЙН"]
+    },
+  ];
+  events_heal = [
+    {
+      name: ["Скандинаская ходьба", "Суставная гимнастика", "Оздоровительная гимнастика"],
+      status: ["", "ОНЛАЙН"]
+    },
+  ];
+  events_creative = [
+    {
+      name: ["Мастер-класс по уходу за кожей в зрелом возрасте", "Рисование", "Пение"],
+      status: ["", "ОНЛАЙН"]
+    },
+  ];
+  events_specially = [
+    {
+      name: ["Московский театрал", "Секреты добрососедства", "Психологические тренинги"],
+      status: ["", "ОНЛАЙН"]
+    },
+  ];
+
 
 }
