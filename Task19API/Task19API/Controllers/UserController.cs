@@ -13,11 +13,11 @@ namespace Task19API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUser _userGroup;
+        private readonly IUser _userId;
 
         public UserController(IUser userGroup)
         {
-            _userGroup = userGroup;
+            _userId = userGroup;
         }
 
         [HttpPost("/getUser")]
@@ -26,7 +26,7 @@ namespace Task19API.Controllers
             try
             {
                 // получаем юзера по входным данным
-                var userId = await _userGroup.GetUser(user);
+                var userId = await _userId.GetUser(user);
                 if (userId == null)
                 {
                     throw new Exception("not user");
