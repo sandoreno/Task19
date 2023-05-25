@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Task19API.Models;
 
-public partial class User
+public class User
 {
     public int UniqueNumber { get; set; }
     public DateTime? DateCreated { get; set; }

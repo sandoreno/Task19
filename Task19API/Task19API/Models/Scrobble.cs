@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Task19API.Models;
 
-public partial class Scrobble
+public class Scrobble
 {
     public int? UserId { get; set; }
     public int? GroupId { get; set; }
