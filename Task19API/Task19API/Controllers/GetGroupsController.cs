@@ -34,7 +34,7 @@ namespace Task19API.Controllers
                 using var client = new HttpClient();
                 var scrobbles = await client.GetAsync($"http://localhost:8000/recommend/{user.UniqueNumber}/10");
 
-                var userGroups = _response.Response(visitedDesc, scrobbles);
+                var userGroups = await _response.Response(visitedDesc, scrobbles);
                 
                 return Ok(userGroups);
             }
