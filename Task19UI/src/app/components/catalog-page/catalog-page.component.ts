@@ -2,7 +2,7 @@ import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { EventDays, EventFormat, EventTimes } from 'src/app/shared/constans';
-import { EventModel, GroupModelDTO } from 'src/app/shared/models';
+import { EventInfoModel, EventModel, GroupModelDTO } from 'src/app/shared/models';
 import { GroupService } from 'src/app/shared/services';
 
 @Component({
@@ -14,8 +14,13 @@ export class CatalogPageComponent implements OnInit {
   searchText: any;
   event: EventModel = new EventModel;
 
-  eventModels: EventModel[] = [];
   groups: GroupModelDTO[] = [];
+
+  id: number; //Поправить id
+  eventModel: EventModel = new EventModel;
+  eventInfo: EventInfoModel = new EventInfoModel;
+  visitHistory: any[];
+  recommendationGroups: any[];
 
   public eventFormat = EventFormat;
   public eventDays = EventDays;
@@ -25,8 +30,31 @@ export class CatalogPageComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    //let t = this;
-    //t.getAllGroups(t.eventModels)
+    let t = this;
+    t.id = 101346559;
+    t.eventModel.uniqueNumber = t.id;
+    t.PostIdUser(t.eventModel, t.eventInfo)
+    //console.log(t.eventInfo)
+    //console.log(t.recommendationGroups)
+    //console.log(t.visitHistory)
+  }
+
+  public async PostIdUser(eventModel: EventModel, eventInfo: EventInfoModel) {
+    //debugger
+    let t = this;
+    await lastValueFrom(this.groupService.RegisterEvent(eventModel, eventInfo))
+      .then(response => {
+        eventInfo = response
+        t.visitHistory = eventInfo.visitedGroups
+        t.recommendationGroups = eventInfo.scrobbleRecommendation
+        console.log(t.recommendationGroups)
+        console.log(t.visitHistory)
+      })
+      .catch(ex => {
+        console.log(ex)
+      })
+      .finally(() => {
+      })
   }
 
   //public async getAllGroups(event) {

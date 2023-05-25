@@ -9,4 +9,5 @@ export enum EventTimes{
   time15 = 7,
   time16 = 8,
   time17 = 9,
+  default = -200,
 }

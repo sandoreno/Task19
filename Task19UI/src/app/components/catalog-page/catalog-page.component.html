@@ -27,36 +27,37 @@
     </ul>
   </div>
 </div>
+
 <div class="container cards__container">
-  <ul class="cards__list list-reset">
-    <li class="card" *ngFor="let item of English_language | filter: searchText">
-      <h5 class="card-header">{{item.title}}</h5>
+  <ul class="cards__list list-reset" *ngFor="let item of visitHistory | filter: searchText">
+    <li class="card">
+      <h5 class="card-header">{{item.directionOne}}</h5>
       <div class="card-body">
-        <h5 class="card-title">{{item.name}}</h5>
+        <h5 class="card-title">{{item.directionTwo}}</h5>
         <ul class="filter__group list-reset">
           <li class="filter__item">
-            <p class="filter__component">{{item.filters[0]}}</p>
+            <p class="filter__component">Очный формат</p>
           </li>
           <li class="filter__item">
-            <p class="filter__component">{{item.filters[1]}}</p>
+            <p class="filter__component">Группа занимается</p>
           </li>
           <li class="filter__item">
-            <p class="filter__component">{{item.filters[2]}}</p>
+            <p class="filter__component">Запись продолжается</p>
           </li>
         </ul>
         <div class="address__group">
-          <p class="card-text card__address">{{item.address}}</p>
+          <p class="card-text card__address">{{item.siteAddress}}</p>
           <button class="show-map btn-reset">Показать на карте</button>
         </div>
-        <p class="group__number"><b>Группа</b> {{item.group}}</p>
-        <p class="group__time">{{item.day}} {{item.start_time}}-{{item.end_time}}</p>
+        <p class="group__number"><b>Группа</b> G-02069387</p>
+        <p class="group__time">{{item.activePeriod}}{{item.closePeriod}}</p>
         <div class="cards__btns">
           <button href="#" class="btn btn-primary enroll-btn">Записаться</button>
           <button class="btn-reset">Узнать больше</button>
         </div>
       </div>
     </li>
-    <li class="card" *ngFor="let item of Walk | filter: searchText">
+    <!--<li class="card" *ngFor="let item of Walk | filter: searchText">
       <h5 class="card-header">{{item.title}}</h5>
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
@@ -109,6 +110,6 @@
           <button class="btn-reset">Узнать больше</button>
         </div>
       </div>
-    </li>
+    </li>-->
   </ul>
 </div>

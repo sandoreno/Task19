@@ -9,4 +9,5 @@ export var EventTimes = [
   {value: 7, label: "15:00"},
   {value: 8, label: "16:00"},
   {value: 9, label: "17:00"},
+  {value: -200, label: "Выберите время"},
 ]
