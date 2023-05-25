@@ -12,4 +12,4 @@ import { TestsPageRoutingModule } from './tests-page.component.routing-module';
     TestsPageRoutingModule
   ]
 })
-export class StartPageModule { }
+export class TestsPageModule { }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { EventDays, EventFormat, EventTimes } from 'src/app/shared/constans';
 import { EventModel, GroupModelDTO } from 'src/app/shared/models';
-import { GroupService } from 'src/app/shared/services';
+import { GroupService, UserService } from 'src/app/shared/services';
 
 @Component({
   selector: 'app-catalog-page',
@@ -20,16 +20,24 @@ export class CatalogPageComponent implements OnInit {
   public eventFormat = EventFormat;
   public eventDays = EventDays;
   public eventTimes = EventTimes;
+  public userId = () => {
+    let id;
+    this.userService.credentials$.subscribe({next(credentials) {id = credentials}} );
+    return id;
+  }
+  constructor(
+    private groupService: GroupService,
+    private userService: UserService) {
 
-  constructor(private groupService: GroupService) {
 
   }
   ngOnInit(): void {
-    //let t = this;
+    let t = this;
+    
     //t.getAllGroups(t.eventModels)
   }
 
-  //public async getAllGroups(event) {
+  // public async getAllGroups(event) {
   //  debugger
   //  let t = this;
   //  await lastValueFrom(t.groupService.RegisterEvent(event))
@@ -42,7 +50,7 @@ export class CatalogPageComponent implements OnInit {
   //    })
   //    .finally(() => {
   //    })
-  //}
+  // }
 
   //получить все рекомендованные мероприятия по id юзера
   //  debugger;

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { GroupModelDTO } from 'src/app/shared/models';
+import { QuestionModel } from 'src/app/shared/models/question.model';
 import { GroupService } from 'src/app/shared/services';
+import { TestService } from 'src/app/shared/services/test.service';
 
 @Component({
   selector: 'app-tests-page',
@@ -9,30 +11,13 @@ import { GroupService } from 'src/app/shared/services';
   styleUrls: ['./tests-page.component.scss']
 })
 export class TestsPageComponent {
-  groups: GroupModelDTO[] = [];
-  isChecked: boolean = false;
+  questionModel: QuestionModel;
 
-  constructor(private groupService: GroupService){}
+  constructor(private testService: TestService){}
 
-  questions = [
-    { id: 0, value: "Прикладное творчество" },
-    { id: 1, value: "Клубная деятельность" },
-    { id: 2, value: "Игры" },
-    { id: 3, value: "Физическая активность" },
-    { id: 4, value: "Образование" },
-  ];
-
-  //public async getAllGroups() {
-  //  let t = this;
-  //  await lastValueFrom(t.groupService.GetAllgroups())
-  //  .then(response => {
-  //    t.groups = response;
-  //  })
-  //  .catch(ex => {
-  //    console.log(ex)
-  //  })
-  //  .finally(()=>{
-  //  })
-  //}
+  public async getQuestion() {
+   let t = this;
+   t.questionModel = t.testService.GetQuestion()
+  }
 }
 

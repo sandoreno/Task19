@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GroupModelDTO } from '../models/group.model';
 import { environment } from 'src/enviroments/enviroment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models';
 
@@ -9,8 +9,15 @@ import { UserModel } from '../models';
   providedIn: 'root'
 })
 export class UserService {
+  credentials$:any;
   errorMessage: String = "HttpError";
  private url = "/getUser";
+
+ setCredential(value: any){
+  var t  = this;
+  var credentialSubject = new BehaviorSubject<any>(value);
+  t.credentials$ = credentialSubject.asObservable();
+}
 
   constructor(private http: HttpClient) { }
 
