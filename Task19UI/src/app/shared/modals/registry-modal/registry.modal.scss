@@ -16,33 +16,39 @@
 
 .modal__tile {
   font-size: 3rem;
-  color: rgba(13, 110, 253);
-  ;
+  color: var(--green);
   margin-bottom: 20px;
 }
 
 .main-input {
   cursor: pointer;
-  color: rgba(13, 110, 253);
+  color: var(--green);
   font-size: 18px;
-  border: 1px solid rgba(13, 110, 253, 0.8);
+  border: 1px solid rgba(13, 140, 70, 0.2);
+  transition: border-color .3s ease-in-out;
 }
 
-.main-input:focus {
-  border: 2px solid rgba(13, 110, 253);
+.main-input::placeholder {
+  color: rgba(13, 140, 70, 0.8);
+}
+
+.main-input:focus-visible {
+  border: 2px solid;
+  border-color: var(--green);
   outline: none;
 }
 
 .main-input:focus::placeholder {
-  color: rgba(13, 110, 253);
+  color: var(--green)
 }
 
-.main-input::placeholder {
-  color: rgba(13, 110, 253, 0.8);
+.main-input:hover {
+  border-color: var(--green);
+  outline: none;
 }
 
 .birthDate {
-  color: rgba(13, 110, 253, 0.95);
+  color: rgba(13, 140, 70, 0.95);
   margin-left: 10px;
   margin-bottom: 5px;
 }
@@ -53,9 +59,16 @@
 }
 
 .submit__btn {
+  margin-top: 15px;
   padding: 12px 44px;
 }
 
 .float-end {
+  opacity: 0.6;
   cursor: pointer;
+  transition: opacity .3s ease-in-out;
+}
+
+.float-end:hover {
+  opacity: 1;
 }
