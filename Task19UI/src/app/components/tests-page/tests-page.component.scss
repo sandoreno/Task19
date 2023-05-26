@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: center;
   color: rgba(13, 110, 253);
+  animation: 0.5s ease-in;
+  transition: 0.5s;
 }
 
 .test__content {
@@ -63,4 +65,26 @@ margin-bottom: 10px;
   color: #fff;
   background-color: rgba(13, 110, 253); ;
   font-size: 20px;
+}
+
+
+.answer{
+  margin-bottom: 1.5rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(13, 110, 253, 0.8);
+  padding: 15px;
+}
+
+.answer-active{
+  background-color: rgba(13, 110, 253);
+  color: white !important;
+  margin-bottom: 1.5rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(13, 110, 253, 0.8);
+  padding: 15px;
+}
+
+.sub-text{
+  color: rgb(0,0,0,0.5);
+  font-size: 20px
 }
