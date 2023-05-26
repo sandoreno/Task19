@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Task19API.DTOs;
 using Task19API.Interface;
+using Task19API.Models;
 
 namespace Task19API.Controllers
 {
@@ -18,10 +19,17 @@ namespace Task19API.Controllers
         }
 
         [HttpPost("/getTest")]
-        public async Task<string> GetTest(QuestionModel model)
+        public async Task<ActionResult<TestModel>> GetTest(TestModelResponse model)
         {
-
-            return null;
+            try
+            {
+                var visitedGroups = await _test.GetTest(model);
+                return visitedGroups;
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
