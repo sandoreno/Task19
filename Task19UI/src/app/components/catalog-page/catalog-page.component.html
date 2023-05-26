@@ -3,25 +3,25 @@
     <h1 class="title">Поиск занятий</h1>
     <div class="search__area">
       <input type="text" name="search" class="header__search" [(ngModel)]="searchText">
-      <button class="search__btn btn-reset">
+      <button class="search__btn btn-reset" (click)="recordingBtn(searchText)">
         Найти
       </button>
     </div>
     <ul class="filters__area list-reset">
       <li class="filters__item">
-        <ng-select class="custom" [items]="works" bindLabel="name" bindValue="id" (change)="itemSelected($event)"
+        <ng-select class="custom" [items]="works" bindLabel="name" bindValue="id" (change)="getDirection($event)"
           [multiple]="true" placeholder="Выберите направление"></ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="eventFormat" bindLabel="label" bindValue="id" (change)="itemSelected($event)"
+        <ng-select class="custom" [items]="eventFormat" bindLabel="label" bindValue="id" (change)="getFormat($event)"
           [multiple]="true" placeholder="Выберите формат занятия"></ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="eventDays" bindLabel="label" bindValue="id" (change)="itemSelected($event)"
+        <ng-select class="custom" [items]="eventDays" bindLabel="label" bindValue="id" (change)="getDay($event)"
           [multiple]="true" placeholder="Выберите день недели"></ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="eventTimes" bindLabel="label" bindValue="id" (change)="itemSelected($event)"
+        <ng-select class="custom" [items]="eventTimes" bindLabel="label" bindValue="id" (change)="getTime($event)"
           [multiple]="true" placeholder="Выберите время"></ng-select>
       </li>
     </ul>
@@ -29,7 +29,7 @@
 </div>
 
 <div class="container cards__container">
-  <ul class="cards__list list-reset" *ngFor="let item of visitHistory | filter: searchText">
+  <ul class="cards__list list-reset" *ngFor="let item of visitHistory">
     <li class="card">
       <h5 class="card-header">{{item.directionOne}}</h5>
       <div class="card-body">

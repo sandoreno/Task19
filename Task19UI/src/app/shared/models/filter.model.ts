@@ -1,9 +1,10 @@
 import { EventFormat, EventDays, EventTimes } from "../enums";
 
-export class filter{
-    searchString: string = "";
+export class FilterModel{
+    search: string = "";
+    direction: string = "";
     format: EventFormat;
-    days: EventDays;
-    times: EventTimes;
+    day: EventDays;
+    time: EventTimes;
     // ... и т.д.
 }
