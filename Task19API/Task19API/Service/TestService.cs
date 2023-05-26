@@ -53,17 +53,18 @@ namespace Task19API.Service
                     var dict = new List<int?>(); 
                     if (question.QuestionId == 2)
                     {
-                         dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel1)).Select(x => x.IdLevel2).ToListAsync();
+                         dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel1)).Select(x => x.IdLevel2).Distinct().ToListAsync();
                     }
                     // для 3 уровня
                     if (question.QuestionId == 3)
                     {
-                         dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel2)).Select(x => x.IdLevel3).ToListAsync();
+                         dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel2)).Select(x => x.IdLevel3).Distinct().ToListAsync();
                     }
                     data.answerModels = await _context.Answertolvls
                         .Where(x=> dict.Contains(x.GroupId))
                         .Include(x=> x.Answer)
                         .Select(x => new AnswerModel { Id = x.Answer.Id, Answer = x.Answer.Answer1 })
+                        .Distinct()
                         .ToListAsync();
 
                 }
