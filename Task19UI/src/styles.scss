@@ -2,6 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 
+:root {
+  --green: #0D8C46;
+  --red: #CC2222;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -72,10 +77,16 @@ body {
 }
 
 .title {
+  color: var(--green);
   margin-bottom: 15px;
 }
 
 .main-modal-custom .modal-content{
   background-color: transparent;
   border: none;
+}
+
+.btn {
+  border-color: var(--red) !important;
+  background-color: var(--red) !important;
 }

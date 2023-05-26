@@ -1,7 +1,7 @@
 import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { EventDays, EventFormat, EventTimes } from 'src/app/shared/constans';
+import { EventDays, EventFormat, EventTimes, EventDirection } from 'src/app/shared/constans';
 import { EventInfoModel, EventModel, GroupModelDTO, FilterModel } from 'src/app/shared/models';
 import { GroupService, FilterService } from 'src/app/shared/services';
 
@@ -28,6 +28,7 @@ export class CatalogPageComponent implements OnInit {
   public eventFormat = EventFormat;
   public eventDays = EventDays;
   public eventTimes = EventTimes;
+  public eventDirection = EventDirection;
 
   constructor(private groupService: GroupService, private filterService: FilterService) {
 
@@ -94,33 +95,12 @@ export class CatalogPageComponent implements OnInit {
     { id: 2, name: "Волейбол" }
   ];
 
-  getDirection(e: any) {
-    //let t = this;
-    //t.filterModel.direction = e;
-  }
-  getTime(e: any) {
-    let t = this;
-    //console.log(e);
-    t.filterModel.time = e;
-  }
-  getDay(e: any) {
-    let t = this;
-    //console.log(e);
-    t.filterModel.day = e;
-  }
-  getFormat(e: any) {
-    let t = this;
-    //console.log(e);
-    t.filterModel.format = e;
-  }
-
-
-  recordingBtn(searchValue: string) {
+  PostFilterBtn(searchValue: string) {
     let t = this;
     console.log(searchValue);
     t.filterModel.search = searchValue;
-    //console.log(t.filterModel);
-
+    console.log(t.filterModel);
+    t.postFilter(t.filterModel);
   }
 
   public async postFilter(eventFilter: FilterModel) {

@@ -3,26 +3,34 @@
     <h1 class="title">Поиск занятий</h1>
     <div class="search__area">
       <input type="text" name="search" class="header__search" [(ngModel)]="searchText">
-      <button class="search__btn btn-reset" (click)="recordingBtn(searchText)">
+      <button class="search__btn btn-reset" (click)="PostFilterBtn(searchText)">
         Найти
       </button>
     </div>
     <ul class="filters__area list-reset">
       <li class="filters__item">
-        <ng-select class="custom" [items]="works" bindLabel="name" bindValue="id" (change)="getDirection($event)"
-          [multiple]="true" placeholder="Выберите направление"></ng-select>
+          <ng-select class="custom" [(ngModel)]="filterModel.direction" [multiple]="true" placeholder="Выберите направление">
+            <ng-option *ngFor="let direction of eventDirection" [value]="direction.value">{{direction.label}}
+            </ng-option>
+          </ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="eventFormat" bindLabel="label" bindValue="id" (change)="getFormat($event)"
-          [multiple]="true" placeholder="Выберите формат занятия"></ng-select>
+          <ng-select class="custom" [(ngModel)]="filterModel.format" [multiple]="true" placeholder="Выберите формат занятия">
+            <ng-option *ngFor="let format of eventFormat" [value]="format.value">{{format.label}}
+            </ng-option>
+          </ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="eventDays" bindLabel="label" bindValue="id" (change)="getDay($event)"
-          [multiple]="true" placeholder="Выберите день недели"></ng-select>
+          <ng-select class="custom" [(ngModel)]="filterModel.day" [multiple]="true" placeholder="Выберите день недели">
+            <ng-option *ngFor="let day of eventDays" [value]="day.value">{{day.label}}
+            </ng-option>
+          </ng-select>
       </li>
       <li class="filters__item">
-        <ng-select class="custom" [items]="eventTimes" bindLabel="label" bindValue="id" (change)="getTime($event)"
-          [multiple]="true" placeholder="Выберите время"></ng-select>
+          <ng-select class="custom" [(ngModel)]="filterModel.time" [multiple]="true" placeholder="Выберите время">
+            <ng-option *ngFor="let time of eventTimes" [value]="time.value">{{time.label}}
+            </ng-option>
+          </ng-select>
       </li>
     </ul>
   </div>
