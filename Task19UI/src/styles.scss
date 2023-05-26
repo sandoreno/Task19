@@ -99,3 +99,29 @@ body {
   border-color: transparent !important;
   background-color: rgba(204, 34, 34, 0.5) !important;
 }
+
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+  color: rgba(13, 140, 70, 0.6) !important;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+  background-color: rgba(13, 140, 70, 0.1) !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+  background-color: rgba(13, 140, 70, 0.1) !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: rgba(13, 140, 70, 0.1) !important;
+}
+
+.ng-select .ng-select-container {
+  border: 1px solid rgba(13, 140, 70, .4) !important;
+  transition: border-color .3s ease-in-out;
+}
+
+.ng-select .ng-select-container:hover {
+  border-color: rgba(13, 140, 70) !important;
+}

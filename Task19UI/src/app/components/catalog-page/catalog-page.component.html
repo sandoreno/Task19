@@ -9,25 +9,25 @@
     </div>
     <ul class="filters__area list-reset">
       <li class="filters__item">
-          <ng-select class="custom" [(ngModel)]="filterModel.direction" [multiple]="true" placeholder="Выберите направление">
+          <ng-select class="filter__custom-select" [(ngModel)]="filterModel.direction" [multiple]="true" placeholder="Выберите направление">
             <ng-option *ngFor="let direction of eventDirection" [value]="direction.value">{{direction.label}}
             </ng-option>
           </ng-select>
       </li>
       <li class="filters__item">
-          <ng-select class="custom" [(ngModel)]="filterModel.format" [multiple]="true" placeholder="Выберите формат занятия">
+          <ng-select class="filter__custom-select" [(ngModel)]="filterModel.format" [multiple]="true" placeholder="Выберите формат занятия">
             <ng-option *ngFor="let format of eventFormat" [value]="format.value">{{format.label}}
             </ng-option>
           </ng-select>
       </li>
       <li class="filters__item">
-          <ng-select class="custom" [(ngModel)]="filterModel.day" [multiple]="true" placeholder="Выберите день недели">
+          <ng-select class="filter__custom-select" [(ngModel)]="filterModel.day" [multiple]="true" placeholder="Выберите день недели">
             <ng-option *ngFor="let day of eventDays" [value]="day.value">{{day.label}}
             </ng-option>
           </ng-select>
       </li>
       <li class="filters__item">
-          <ng-select class="custom" [(ngModel)]="filterModel.time" [multiple]="true" placeholder="Выберите время">
+          <ng-select class="filter__custom-select" [(ngModel)]="filterModel.time" [multiple]="true" placeholder="Выберите время">
             <ng-option *ngFor="let time of eventTimes" [value]="time.value">{{time.label}}
             </ng-option>
           </ng-select>
@@ -37,8 +37,8 @@
 </div>
 
 <div class="container cards__container">
-  <ul class="cards__list list-reset" *ngFor="let item of visitHistory">
-    <li class="card">
+  <ul class="cards__list list-reset" >
+    <li class="card" *ngFor="let item of visitHistory">
       <h5 class="card-header">{{item.directionOne}}</h5>
       <div class="card-body">
         <h5 class="card-title">{{item.directionTwo}}</h5>
@@ -57,7 +57,7 @@
           <p class="card-text card__address">{{item.siteAddress}}</p>
           <button class="show-map btn-reset">Показать на карте</button>
         </div>
-        <p class="group__number"><b>Группа</b> G-02069387</p>
+        <p class="group__number"><span class="group__text">Группа</span> G-02069387</p>
         <p class="group__time">{{item.activePeriod}}{{item.closePeriod}}</p>
         <div class="cards__btns">
           <button href="#" class="btn btn-primary enroll-btn">Записаться</button>

@@ -6,13 +6,25 @@
   padding-bottom: 30px;
 }
 
+.cards__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0px;
+}
+
 .card {
-  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 48%;
+}
+
+.card:not(:last-child) {
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 
 .cards__container {
-  background-color: rgba(190, 190, 190, 0.3);
-  ;
+  background-color: rgba(190, 190, 190, 0.1);
 }
 
 .filter__group {
@@ -20,16 +32,17 @@
   margin-bottom: 10px;
 }
 
-.filter__item {
-  font-size: 15px;
-  display: block;
-  height: 32px;
-  padding: 4px;
-  background-color: rgba(190, 190, 190, 0.3);
-}
-
 .filter__item:not(:last-child) {
   margin-right: 10px;
+}
+
+.filter__component {
+  margin-bottom: 0;
+  font-size: 15px;
+  display: block;
+  padding: 5px;
+  background-color: rgba(13, 140, 70, 0.1);
+  border-radius: 4px;
 }
 
 .enroll-btn {
@@ -44,13 +57,27 @@
 
 .card__address {
   margin-right: 10px;
+  margin-bottom: 0;
+  max-width: 290px;
 }
 
 .show-map {
-  color: #0045F7;
+  color: rgba(204, 34, 34, 0.7);
+  transition: color .3s ease-in-out;
+}
+
+.show-map:hover {
+  color: rgb(204, 34, 34);
+}
+
+.card-body {
+  display: grid;
+  flex-direction: column;
 }
 
 .cards__btns {
+  display: flex;
+  align-items: center;
   font-size: 18px;
 }
 
@@ -76,32 +103,36 @@
 
 .header__search {
   width: 70%;
-  margin-right: 30px;
+  margin-right: 41px;
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
-  border: 1px solid rgba(#000000, .1);
+  border: 1px solid rgba(13, 140, 70, .4);
   outline: none;
   border-radius: 8px;
+  transition: border-color .3s ease-in-out;
 }
 
-//.header__search:hover {
-//  border-color: ;
-//}
+.header__search:focus {
+  border-width: 2px;
+}
+
+.header__search:hover {
+  border-color: rgb(13, 140, 70);
+}
 
 .search__btn {
-  background-color: blue;
   color: #f2f2f2;
-  padding: 8px 30px;
+  padding: 8px 40px;
   border-radius: 4px;
 }
 
-.group__number {
-  margin-bottom: 10px;
+.filter__custom-select {
+  border-radius: 4px;
 }
 
-.group__time {
-  margin-bottom: 10px;
+.filter__custom-select:hover {
+  border-color: rgb(13, 140, 70);
 }
 
 .filters__area {
@@ -118,4 +149,27 @@
 .filters__item:not(:last-child) {
   margin-right: 15px;
   margin-bottom: 15px;
+}
+
+.card-header {
+  font-weight: 600;
+  font-size: 25px;
+  color: var(--green);
+}
+
+.card-title {
+  color: var(--red);
+  font-weight: 500;
+}
+
+.group__text {
+  font-weight: 600;
+}
+
+.group__number {
+  margin-bottom: 10px;
+}
+
+.group__time {
+  margin-bottom: 10px;
 }
