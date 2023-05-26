@@ -6,10 +6,6 @@
   padding-bottom: 30px;
 }
 
-.container .card {
-  font-family: "Montserrat"
-}
-
 .card {
   margin-top: 30px;
 }
@@ -73,6 +69,8 @@
 }
 
 .search__area {
+  display: flex;
+  align-items: center;
   margin-bottom: 15px;
 }
 
@@ -82,10 +80,14 @@
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
-  border: 1px solid #3d3d3d;
+  border: 1px solid rgba(#000000, .1);
   outline: none;
   border-radius: 8px;
 }
+
+//.header__search:hover {
+//  border-color: ;
+//}
 
 .search__btn {
   background-color: blue;
