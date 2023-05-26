@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { UserModel, GroupModelDTO, EventModel, EventInfoModel } from 'src/app/shared/models';
 import { UserService, GroupService } from 'src/app/shared/services';
 import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class StartPageComponent {
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private router: Router
   ){}
 
   public async ShowRegistryModal() {
@@ -55,10 +57,13 @@ export class StartPageComponent {
     let t = this;
     await lastValueFrom(t.userService.RegisterUser(user))
     .then(response => {
-      t.id = response;
-      t.eventModel.uniqueNumber = t.id;
-      console.log(t.id)
-      //t.PostIdUser(t.eventModel, t.eventInfo)
+      if(response){
+        t.router.navigate(['catalog']);
+        t.userService.setCredential(response);
+      }
+      else{
+        t.router.navigate(['tests']);
+      }
     })
     .catch(ex => {
       console.log(ex)
@@ -66,22 +71,6 @@ export class StartPageComponent {
     .finally(()=>{
     })
   }
-
-  //public async PostIdUser(eventModel: EventModel,  eventInfo: EventInfoModel) {
-  //  //debugger
-  //  let t = this;
-  //  await lastValueFrom(t.groupService.RegisterEvent(eventModel,  eventInfo))
-  //    .then(response => {
-  //      eventInfo = response
-  //      console.log(eventInfo.scrobbleRecommendation)
-  //      console.log(eventInfo.visitedGroups)
-  //    })
-  //    .catch(ex => {
-  //      console.log(ex)
-  //    })
-  //    .finally(() => {
-  //    })
-  //}
 
   events_education = [
     {

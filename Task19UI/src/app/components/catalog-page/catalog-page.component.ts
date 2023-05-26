@@ -1,9 +1,9 @@
 import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { GroupService, UserService, FilterService } from 'src/app/shared/services';
 import { EventDays, EventFormat, EventTimes, EventDirection } from 'src/app/shared/constans';
 import { EventInfoModel, EventModel, GroupModelDTO, FilterModel } from 'src/app/shared/models';
-import { GroupService, FilterService } from 'src/app/shared/services';
 
 @Component({
   selector: 'app-catalog-page',
@@ -29,8 +29,15 @@ export class CatalogPageComponent implements OnInit {
   public eventDays = EventDays;
   public eventTimes = EventTimes;
   public eventDirection = EventDirection;
-
-  constructor(private groupService: GroupService, private filterService: FilterService) {
+  public userId = () => {
+    let id;
+    this.userService.credentials$.subscribe({next(credentials) {id = credentials}} );
+    return id;
+  }
+  constructor(
+    private groupService: GroupService,
+    private userService: UserService, 
+    private filterService: FilterService) {
 
   }
   ngOnInit(): void {
@@ -59,7 +66,7 @@ export class CatalogPageComponent implements OnInit {
       })
   }
 
-  //public async getAllGroups(event) {
+  // public async getAllGroups(event) {
   //  debugger
   //  let t = this;
   //  await lastValueFrom(t.groupService.RegisterEvent(event))
@@ -72,7 +79,7 @@ export class CatalogPageComponent implements OnInit {
   //    })
   //    .finally(() => {
   //    })
-  //}
+  // }
 
   //получить все рекомендованные мероприятия по id юзера
   //  debugger;

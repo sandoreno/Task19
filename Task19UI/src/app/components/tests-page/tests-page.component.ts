@@ -1,38 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { GroupModelDTO } from 'src/app/shared/models';
-import { GroupService } from 'src/app/shared/services';
+import { QuestionModel } from 'src/app/shared/models/question.model';
+import { TestService } from 'src/app/shared/services/test.service';
+import { Router } from '@angular/router';
+import { ModalService } from 'src/app/shared/services';
+import { AvailableAnswerCount } from 'src/app/shared/constans';
 
 @Component({
   selector: 'app-tests-page',
   templateUrl: './tests-page.component.html',
   styleUrls: ['./tests-page.component.scss']
 })
-export class TestsPageComponent {
-  groups: GroupModelDTO[] = [];
-  isChecked: boolean = false;
+export class TestsPageComponent implements OnInit{
+  questionModel: QuestionModel;
+  getAvailableAnswerCount: () => number;
+  getCheckedCount: () => number;
+  
+  constructor(
+    private testService: TestService,
+    private router: Router,
+    private modalService: ModalService
+    ){
+      let t = this;
+      t.getAvailableAnswerCount = () => {
+        let result = AvailableAnswerCount.find(element => element.level_id == this.questionModel.level_id);
+        return result.answerCount ?? 3;
+      }
+      t.getCheckedCount = () => {
+        let result = t.questionModel.answers.filter(elem => elem.isChecked).length;
+        return result;
+      }
+    }
+  ngOnInit(): void {
+    this.getQuestion();
+  }
 
-  constructor(private groupService: GroupService){}
+  public async getQuestion() {
+   let t = this;
+   t.questionModel = t.testService.GetQuestion()
+  }
 
-  questions = [
-    { id: 0, value: "Прикладное творчество" },
-    { id: 1, value: "Клубная деятельность" },
-    { id: 2, value: "Игры" },
-    { id: 3, value: "Физическая активность" },
-    { id: 4, value: "Образование" },
-  ];
+  public async sendAnswer(){
+    let t = this;
+    if(t.questionModel.level_id == 3){
+      t.router.navigate(['catalog']);
+      return;
+    }
+    let questionToSend = t.questionModel;
+    questionToSend.answers = t.questionModel.answers.filter(elem => elem.isChecked);
+    if(questionToSend.answers.length > t.getAvailableAnswerCount()){
+      t.modalService.showErrorModal("Выберите меньшее количество категорий")
+    }
+    t.questionModel = t.testService.SendAnswers(questionToSend);
+  }
 
-  //public async getAllGroups() {
-  //  let t = this;
-  //  await lastValueFrom(t.groupService.GetAllgroups())
-  //  .then(response => {
-  //    t.groups = response;
-  //  })
-  //  .catch(ex => {
-  //    console.log(ex)
-  //  })
-  //  .finally(()=>{
-  //  })
-  //}
+  public isDisabled(): boolean{
+    let t = this;
+    return t.questionModel.answers.filter(elem => elem.isChecked).length >= t.getAvailableAnswerCount();
+  }
 }
 
