@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { GroupModelDTO } from '../models/group.model';
 import { environment } from 'src/enviroments/enviroment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

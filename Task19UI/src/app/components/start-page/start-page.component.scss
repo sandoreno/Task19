@@ -2,7 +2,7 @@
   padding-top: 30px;
 }
 
-.row {
+.card__wrapper {
   display: flex;
   flex-wrap: wrap;
   padding-left: 10px;
@@ -10,40 +10,40 @@
 }
 
 .destinations__title {
-  margin-bottom: 40px;
+  font-weight: 800;
+  margin-bottom: 30px;
 }
 
-.col-3 {
-  width: 24%;
+.destinations__card {
+  width: 48%;
   display: flex;
-  border: 1px solid rgba(120, 120, 120, 0.3);
+  border: 1px solid rgba(13, 140, 70, 0.4);
   flex-direction: column;
   align-items: flex-start;
   border-radius: 10px;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(13, 140, 70, 0.05);
   padding: 10px 20px;
-  min-height: 240px;
+  min-height: 190px;
 }
 
-.col-3:not(:last-of-type) {
+.destinations__card:not(:last-of-type) {
   margin-right: 15px;
   margin-bottom: 15px;
 }
 
-.col-3:last-of-type {
+.destinations__card:last-of-type {
   margin-bottom: 15px;
 }
 
 .card__title {
-  font-weight: bold;
-  font-size: 21px;
-  margin-bottom: 20px;
+  color: var(--red);
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
 .link {
-  font-size: 16px;
-  font-weight: 500px;
-  color: rgb(65, 65, 243);
+  font-size: 17px;
+  color: #000;
   text-decoration: none;
   max-width: 100%;
   width: 100%;
@@ -51,4 +51,13 @@
 
 .list__item:not(:last-child) {
   margin-bottom: 15px;
+}
+
+.recommend__title {
+  font-weight: 600;
+}
+
+.recommend__container {
+  padding-top: 0;
+  padding-bottom: 30px;
 }

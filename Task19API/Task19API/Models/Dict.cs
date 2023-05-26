@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Task19API.Models;
 
-public partial class Dict
+public class Dict
 {
     public string? Category { get; set; }
 

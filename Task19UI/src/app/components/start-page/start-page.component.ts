@@ -72,22 +72,6 @@ export class StartPageComponent {
     })
   }
 
-  // public async PostIdUser(eventModel: EventModel,  eventInfo: EventInfoModel) {
-  //   //debugger
-  //   let t = this;
-  //   await lastValueFrom(t.groupService.RegisterEvent(eventModel,  eventInfo))
-  //     .then(response => {
-  //       eventInfo = response
-  //       console.log(eventInfo.scrobbleRecommendation)
-  //       console.log(eventInfo.visitedGroups)
-  //     })
-  //     .catch(ex => {
-  //       console.log(ex)
-  //     })
-  //     .finally(() => {
-  //     })
-  // }
-
   events_education = [
     {
       name: ["Пеший лекторий", "Английскай язык", "Шахматы и шашки"],

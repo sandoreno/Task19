@@ -1,4 +1,5 @@
 export enum EventTimes{
+  default = -200,
   time8 = 0,
   time9 = 1,
   time10 = 2,

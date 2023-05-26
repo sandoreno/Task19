@@ -1,4 +1,5 @@
 export enum EventDays{
+  default = -200,
   Monday = 1,
   Tuesday = 2,
   Wednesday = 3,
