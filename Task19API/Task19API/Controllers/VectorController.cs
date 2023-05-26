@@ -25,9 +25,10 @@ namespace Task19API.Controllers
             try
             {
                 var vector = await _vector.Vector(model);
+                var vectorToString = vector.ToString().Replace("[", "").Replace("]", "");
                 using var client = new HttpClient();
-                var scrobbles = await client.GetAsync($"/recommend/{vector}/10");
-                var recommendation = await scrobbles.Content.ReadAsStringAsync();                                 //
+                var scrobbles = await client.GetAsync($"http://localhost:8000/recommend/{vectorToString}/10");
+                var recommendation = await scrobbles.Content.ReadAsStringAsync();                                 
                 recommendation = recommendation.Replace("[", "").Replace("]", "");
                 var splitedRequest = recommendation.Split(",").Select(x => Convert.ToInt32(x)).ToList();
                 var scrobbleGroups = await _desc.groupsDesc(splitedRequest);
