@@ -58,7 +58,7 @@ export class StartPageComponent {
       t.id = response;
       t.eventModel.uniqueNumber = t.id;
       console.log(t.id)
-      t.PostIdUser(t.eventModel, t.eventInfo)
+      //t.PostIdUser(t.eventModel, t.eventInfo)
     })
     .catch(ex => {
       console.log(ex)
@@ -67,21 +67,21 @@ export class StartPageComponent {
     })
   }
 
-  public async PostIdUser(eventModel: EventModel,  eventInfo: EventInfoModel) {
-    //debugger
-    let t = this;
-    await lastValueFrom(t.groupService.RegisterEvent(eventModel,  eventInfo))
-      .then(response => {
-        eventInfo = response
-        console.log(eventInfo.scrobbleRecommendation)
-        console.log(eventInfo.visitedGroups)
-      })
-      .catch(ex => {
-        console.log(ex)
-      })
-      .finally(() => {
-      })
-  }
+  //public async PostIdUser(eventModel: EventModel,  eventInfo: EventInfoModel) {
+  //  //debugger
+  //  let t = this;
+  //  await lastValueFrom(t.groupService.RegisterEvent(eventModel,  eventInfo))
+  //    .then(response => {
+  //      eventInfo = response
+  //      console.log(eventInfo.scrobbleRecommendation)
+  //      console.log(eventInfo.visitedGroups)
+  //    })
+  //    .catch(ex => {
+  //      console.log(ex)
+  //    })
+  //    .finally(() => {
+  //    })
+  //}
 
   events_education = [
     {
