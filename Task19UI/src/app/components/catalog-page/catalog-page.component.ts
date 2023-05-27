@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { GroupService, UserService, FilterService } from 'src/app/shared/services';
 import { EventDays, EventFormat, EventTimes, EventDirection } from 'src/app/shared/constans';
 import { EventInfoModel, EventModel, GroupModelDTO, FilterModel } from 'src/app/shared/models';
+import { TabsComponent } from '../../shared/components/tabs/tabs.component';
 
 @Component({
   selector: 'app-catalog-page',
@@ -31,7 +32,7 @@ export class CatalogPageComponent implements OnInit {
   public eventDirection = EventDirection;
   public userId = () => {
     let id;
-    this.userService.credentials$.subscribe({next(credentials) {id = credentials}} );
+    this.userService.credentials$.subscribe({ next(credentials) { id = credentials } });
     return id;
   }
   constructor(
@@ -43,8 +44,10 @@ export class CatalogPageComponent implements OnInit {
   ngOnInit(): void {
     let t = this;
     //t.id = 101346559;
-    t.eventModel.uniqueNumber = t.userId();
-    console.log(t.userId());
+    //console.log(localStorage['id']);
+    //t.eventModel.uniqueNumber = t.userId();
+    //console.log(t.userId());
+    t.eventModel.uniqueNumber = localStorage['idUser'];
     t.PostIdUser(t.eventModel, t.eventInfo);
     t.postFilter(t.filterModel);
   }

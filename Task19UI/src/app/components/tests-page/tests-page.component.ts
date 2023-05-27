@@ -15,7 +15,7 @@ export class TestsPageComponent implements OnInit{
   questionModel: QuestionModel;
   getAvailableAnswerCount: () => number;
   getCheckedCount: () => number;
-  
+
   constructor(
     private testService: TestService,
     private router: Router,

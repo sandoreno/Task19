@@ -11,6 +11,8 @@ import { CustomFilterPipe } from './modules/custom_filter/custom-filter-pipe.pip
 import { Comp_Dir } from './directive/comp.directive'
 import { HttpClientModule } from '@angular/common/http';
 import { RegistryModule } from './shared/modals/registry-modal/registry.module';
+import { TabsComponent } from './shared/components/tabs/tabs.component';
+import { TabComponent } from './shared/components/tabs/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { RegistryModule } from './shared/modals/registry-modal/registry.module';
     TestsPageComponent,
     CatalogPageComponent,
     CustomFilterPipe,
-    Comp_Dir
+    Comp_Dir,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,
