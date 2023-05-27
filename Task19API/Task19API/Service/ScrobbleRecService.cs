@@ -6,27 +6,25 @@ using Task19API.Models;
 
 namespace Task19API.Service
 {
-    public class ScrobbleRecService : IScrobbleRec, INormalize
+    public class ScrobbleRecService : IScrobbleRec
     {
         private readonly IGroupDescription _desc;
-        public ScrobbleRecService(IGroupDescription desc)
+        private readonly INormalize _norm;
+
+        public ScrobbleRecService(IGroupDescription desc,
+                                  INormalize norm)
         {
             _desc = desc;
+            _norm = norm;
         }
 
         public async Task<List<GroupModel>> ScrobbleRec(HttpResponseMessage? response)
         {
-            var scrobble = await NormalizeResponse(response);
+            var scrobble = await _norm.NormalizeResponse(response);
             var scrobbleGroups = await _desc.groupsDesc(scrobble);
             return scrobbleGroups;
         }
-        public async Task<List<int>> NormalizeResponse(HttpResponseMessage responseMessage)
-        {
-            var strResp = await responseMessage.Content.ReadAsStringAsync();
-            strResp = strResp.Replace("[", "").Replace("]", "");
-            var response = strResp.Split(",").Select(x => Convert.ToInt32(x)).ToList();
-            return response;
-        }
+        
 
     }
 }
