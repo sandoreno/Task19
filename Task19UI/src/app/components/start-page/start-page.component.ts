@@ -18,13 +18,11 @@ export class StartPageComponent {
   eventModel: EventModel = new EventModel;
   eventInfo: EventInfoModel = new EventInfoModel;
   public mas: any;
-
   visitHistory: any[];
   recomend: any[];
-
-
   public modalRef: NgbModalRef;
   condition: boolean = true;
+  
   constructor(
     private modalService: NgbModal,
     private userService: UserService,

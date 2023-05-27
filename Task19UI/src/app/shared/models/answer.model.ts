@@ -1,6 +1,6 @@
 export class AnswerModel{
     id:number;
-    answerText: string;
+    answer: string;
     isChecked: boolean = false;
   }
   
