@@ -27,10 +27,6 @@ namespace Task19API.Controllers
             {
                 // получаем юзера по входным данным
                 var userId = await _userId.GetUser(user);
-                if (userId == null)
-                {
-                    throw new Exception("not user");
-                }
 
                 return Ok(userId);
             }
