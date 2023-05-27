@@ -1,7 +1,7 @@
 import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { GroupService, UserService, FilterService } from 'src/app/shared/services';
+import { GroupService, UserService, FilterService, ModalService } from 'src/app/shared/services';
 import { EventDays, EventFormat, EventTimes, EventDirection } from 'src/app/shared/constans';
 import { EventInfoModel, EventModel, GroupModelDTO, FilterModel } from 'src/app/shared/models';
 
@@ -13,37 +13,34 @@ import { EventInfoModel, EventModel, GroupModelDTO, FilterModel } from 'src/app/
 export class CatalogPageComponent implements OnInit {
   searchText: any;
   event: EventModel = new EventModel;
-
   groups: GroupModelDTO[] = [];
-
-  id: number; //Поправить id
   eventModel: EventModel = new EventModel;
   eventInfo: EventInfoModel = new EventInfoModel;
   visitHistory: any[];
   recommendationGroups: any[];
-
   filterModel: FilterModel = new FilterModel;
-
-
   public eventFormat = EventFormat;
   public eventDays = EventDays;
   public eventTimes = EventTimes;
   public eventDirection = EventDirection;
-  public userId = () => {
-    let id;
-    this.userService.credentials$.subscribe({next(credentials) {id = credentials}} );
-    return id;
-  }
+  public userId: () => number;
+
   constructor(
     private groupService: GroupService,
     private userService: UserService, 
-    private filterService: FilterService) {
+    private filterService: FilterService,
+    private modalService: ModalService) { 
+      let t = this;
+      t.userId = () => {
+        let id = 1;
+        //t.userService.credentials$.subscribe({next(credentials) {id = credentials}} ); //заглушка поправить
+        return id;
+      }
+     }
 
-  }
   ngOnInit(): void {
     let t = this;
-    t.id = 101346559;
-    t.eventModel.uniqueNumber = t.id;
+    t.eventModel.uniqueNumber = t.userId();
     t.PostIdUser(t.eventModel, t.eventInfo);
     t.postFilter(t.filterModel);
   }
@@ -66,42 +63,6 @@ export class CatalogPageComponent implements OnInit {
       })
   }
 
-  // public async getAllGroups(event) {
-  //  debugger
-  //  let t = this;
-  //  await lastValueFrom(t.groupService.RegisterEvent(event))
-  //    .then(response => {
-  //      t.event = response;
-  //      console.log(t.event)
-  //    })
-  //    .catch(ex => {
-  //      console.log(ex)
-  //    })
-  //    .finally(() => {
-  //    })
-  // }
-
-  //получить все рекомендованные мероприятия по id юзера
-  //  debugger;
-  //  let t = this;
-  //  await lastValueFrom(t.groupService.GetAllgroups())
-  //    .then(response => {
-  //      t.groups = response;
-  //      console.log(t.groups)
-  //    })
-  //    .catch(ex => {
-  //      console.log(ex)
-  //    })
-  //    .finally(() => {
-  //    })
-  //}
-
-  works = [
-    { id: 0, name: "Футбол" },
-    { id: 1, name: "Баскетбол" },
-    { id: 2, name: "Волейбол" }
-  ];
-
   PostFilterBtn(searchValue: string) {
     let t = this;
     console.log(searchValue);
@@ -116,6 +77,7 @@ export class CatalogPageComponent implements OnInit {
     await lastValueFrom(t.filterService.PostFilter(eventFilter))
       .then(response => {
         console.log(response)
+          t.modalService.showErrorModal("АШИПЬКА")
       })
       .catch(ex => {
         console.log(ex)
