@@ -44,30 +44,31 @@ namespace Task19API.Service
                     // для 3 уровня
                     //var ansvers = await _context.Answers.Include(x => x.Answertolvl).ToListAsync();
 
-                    var answertolvl = await _context.Answertolvls.Include(x => x.Answer).ToListAsync();
+                    //var answertolvl = await _context.Answertolvls.Include(x => x.Answer).Distinct().ToListAsync();
 
-                    var lvl = answertolvl.Where(x => question.AnswerId
-                        .Contains(Convert.ToInt32(x.AnswerId)))
+                    var lvl = await _context.Answertolvls
+                        .Where(x => question.AnswerId
+                        .Contains((int)x.AnswerId))
                         .Select(x => x.GroupId)
-                        .ToList();
+                        .ToListAsync();
 
                     // для 2 уровня
                     var dict = new List<int?>();
-                    var dictContext = _context.Dicts.ToList();
                     if (question.QuestionId == 2)
                     {
-                        dict = dictContext.Where(x => lvl.Contains(Convert.ToInt32(x.IdLevel1))).Select(x => x.IdLevel2).Distinct().ToList();
+                        dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel1)).Select(x => x.IdLevel2).Distinct().ToListAsync();
                     }
                     // для 3 уровня
                     if (question.QuestionId == 3)
                     {
-                        dict = dictContext.Where(x => lvl.Contains(Convert.ToInt32(x.IdLevel2))).Select(x => x.IdLevel3).Distinct().ToList();
+                        dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel2)).Select(x => x.IdLevel3).Distinct().ToListAsync();
                     }
-                    data.answerModels = answertolvl
-                        .Where(x=> dict.Contains(Convert.ToInt32(x.GroupId)))
+                    data.answerModels = await _context.Answertolvls
+                        .Where(x => dict.Contains(x.GroupId))
+                        .Include(x => x.Answer)
                         .Select(x => new AnswerModel { Id = x.Answer.Id, Answer = x.Answer.Answer1 })
                         .Distinct()
-                        .ToList();
+                        .ToListAsync();
 
                 }
                 return data;

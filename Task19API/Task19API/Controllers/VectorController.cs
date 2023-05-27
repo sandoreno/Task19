@@ -32,8 +32,8 @@ namespace Task19API.Controllers
 
                 var vector = await _vector.Vector(model);
                 string toResponse = String.Join(",", vector.vector);
-                
-                using var client = new HttpClient();
+
+                //using var client = new HttpClient();
 
                 //var vectorString = await client.GetAsync($"http://localhost:8000/recommend/{toResponse}/10");
                 //var level3 = await client.GetAsync($"http://localhost:8000/find_similar/{vector.level3}");
