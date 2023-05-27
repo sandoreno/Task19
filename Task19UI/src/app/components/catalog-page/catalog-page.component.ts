@@ -16,7 +16,7 @@ export class CatalogPageComponent implements OnInit {
 
   groups: GroupModelDTO[] = [];
 
-  id: number; //Поправить id
+  //id: number; //Поправить id
   eventModel: EventModel = new EventModel;
   eventInfo: EventInfoModel = new EventInfoModel;
   visitHistory: any[];
@@ -36,20 +36,20 @@ export class CatalogPageComponent implements OnInit {
   }
   constructor(
     private groupService: GroupService,
-    private userService: UserService, 
+    private userService: UserService,
     private filterService: FilterService) {
 
   }
   ngOnInit(): void {
     let t = this;
-    t.id = 101346559;
-    t.eventModel.uniqueNumber = t.id;
+    //t.id = 101346559;
+    t.eventModel.uniqueNumber = t.userId();
+    console.log(t.userId());
     t.PostIdUser(t.eventModel, t.eventInfo);
     t.postFilter(t.filterModel);
   }
 
   public async PostIdUser(eventModel: EventModel, eventInfo: EventInfoModel) {
-    //debugger
     let t = this;
     await lastValueFrom(this.groupService.RegisterEvent(eventModel, eventInfo))
       .then(response => {
@@ -66,42 +66,6 @@ export class CatalogPageComponent implements OnInit {
       })
   }
 
-  // public async getAllGroups(event) {
-  //  debugger
-  //  let t = this;
-  //  await lastValueFrom(t.groupService.RegisterEvent(event))
-  //    .then(response => {
-  //      t.event = response;
-  //      console.log(t.event)
-  //    })
-  //    .catch(ex => {
-  //      console.log(ex)
-  //    })
-  //    .finally(() => {
-  //    })
-  // }
-
-  //получить все рекомендованные мероприятия по id юзера
-  //  debugger;
-  //  let t = this;
-  //  await lastValueFrom(t.groupService.GetAllgroups())
-  //    .then(response => {
-  //      t.groups = response;
-  //      console.log(t.groups)
-  //    })
-  //    .catch(ex => {
-  //      console.log(ex)
-  //    })
-  //    .finally(() => {
-  //    })
-  //}
-
-  works = [
-    { id: 0, name: "Футбол" },
-    { id: 1, name: "Баскетбол" },
-    { id: 2, name: "Волейбол" }
-  ];
-
   PostFilterBtn(searchValue: string) {
     let t = this;
     console.log(searchValue);
@@ -111,11 +75,10 @@ export class CatalogPageComponent implements OnInit {
   }
 
   public async postFilter(eventFilter: FilterModel) {
-    //debugger
     let t = this;
     await lastValueFrom(t.filterService.PostFilter(eventFilter))
       .then(response => {
-        console.log(response)
+        //console.log(response)
       })
       .catch(ex => {
         console.log(ex)
