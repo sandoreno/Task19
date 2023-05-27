@@ -14,14 +14,16 @@ namespace Task19API.Controllers
         private readonly IUserGroups _userGroups;
         private readonly IGroupDescription _desc;
         private readonly IGroupResponse _response;
-
+        private readonly INormalize _norm;
         public GetGroupsController(IUserGroups userGroups,
                                    IGroupDescription desc,
-                                   IGroupResponse response)
+                                   IGroupResponse response,
+                                   INormalize norm)
         {
             _userGroups = userGroups;
             _desc = desc;
             _response = response;
+            _norm = norm;
         }
 
         [HttpPost("/getGroups")]
@@ -37,11 +39,15 @@ namespace Task19API.Controllers
                 //using var client = new HttpClient();
                 //var scrobblesResponse = await client.GetAsync($"http://localhost:8000/recommend/{user.UniqueNumber}/10");
                 //var scrobble = await _norm.NormalizeResponse(scrobblesResponse);
-                var scrobbleGroups = await _desc.groupsDesc(new List<int> { 801370979 });
-                //var userGroups = await _response.Response(visitedDesc, scrobbles);
+
+                var scrobbleGroups = await _desc.groupsDesc(new List<int> { 801347688 });
+
+                //var userGroups = await _response.Response(visitedDesc, scrobblesResponse);
+
                 UserGroupsResponse userGroupsResponse = new UserGroupsResponse();
                 userGroupsResponse.ScrobbleRecommendation = scrobbleGroups;
                 userGroupsResponse.visitedGroups = visitedDesc;
+
                 return Ok(userGroupsResponse);            //userGroups <--> userGroupsResponse                                                     
             }
             catch(Exception ex)

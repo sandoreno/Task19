@@ -32,12 +32,18 @@ namespace Task19API.Service
                         .Where(x => modelIds.Contains(x.IdLevel3))
                         .Select(x => x.Level3)
                         .ToListAsync();
-
+                
                 var uniqueNumber = await _context.Groups
                     .Where(x => dict.Contains(x.DirectionThree))
                     .Select(x => x.UniqueNumber)
                     .Distinct()
                     .ToListAsync();
+
+                var ids = await _context.ItemToIds
+                    .Where(x => uniqueNumber.Contains(x.UniqueNumber))
+                    .Select(x => x.Id)
+                    .ToListAsync();
+                    
 
                 var idlevel3 = await _context.Dicts
                     .Where(x => modelIds.Contains(x.IdLevel3))
@@ -55,7 +61,7 @@ namespace Task19API.Service
                     .ToLower();
 
                 VectorModel vector = new VectorModel();
-                vector.vector = uniqueNumber;
+                vector.vector = ids;
                 vector.level3 = srt;
 
                 return vector;
