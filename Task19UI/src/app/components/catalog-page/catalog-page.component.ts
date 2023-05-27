@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { GroupService, UserService, FilterService, ModalService } from 'src/app/shared/services';
 import { EventDays, EventFormat, EventTimes, EventDirection } from 'src/app/shared/constans';
 import { EventInfoModel, EventModel, GroupModelDTO, FilterModel } from 'src/app/shared/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalog-page',
@@ -29,12 +30,17 @@ export class CatalogPageComponent implements OnInit {
     private groupService: GroupService,
     private userService: UserService, 
     private filterService: FilterService,
-    private modalService: ModalService) { 
+    private modalService: ModalService,
+    private router: Router) { 
       let t = this;
       t.userId = () => {
-        let id = 1;
-        //t.userService.credentials$.subscribe({next(credentials) {id = credentials}} ); //заглушка поправить
-        return id;
+        if(t.userService.credentials$){
+          return t.userService.credentials$; //заглушка поправить
+        }
+        else{
+          t.router.navigate(['dashboard'])
+        }
+        return 0;
       }
      }
 
@@ -77,8 +83,7 @@ export class CatalogPageComponent implements OnInit {
     let t = this;
     await lastValueFrom(t.filterService.PostFilter(eventFilter))
       .then(response => {
-        console.log(response)
-        t.modalService.showErrorModal("АШИПЬКА")
+        console.log(response);
       })
       .catch(ex => {
         console.log(ex)
