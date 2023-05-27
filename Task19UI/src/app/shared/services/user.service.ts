@@ -8,19 +8,19 @@ import { UserModel } from '../models';
   providedIn: 'root'
 })
 export class UserService {
-  credentials$:any;
+  credentials$: any;
   errorMessage: String = "HttpError";
- private url = "/getUser";
+  private url = "/getUser";
 
- setCredential(value: any){
-  var t  = this;
-  var credentialSubject = new BehaviorSubject<any>(value);
-  t.credentials$ = credentialSubject.asObservable();
-}
+  setCredential(value: any) {
+    var t = this;
+    var credentialSubject = new BehaviorSubject<any>(value);
+    t.credentials$ = credentialSubject.asObservable();
+  }
 
   constructor(private http: HttpClient) { }
 
-  public RegisterUser(user: UserModel) : Observable<UserModel> {
+  public RegisterUser(user: UserModel): Observable<UserModel> {
     return this.http.post<UserModel>(environment.apiUrl + this.url, user);
   }
 }

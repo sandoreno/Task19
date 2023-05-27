@@ -41,12 +41,14 @@ export class CatalogPageComponent implements OnInit {
   ngOnInit(): void {
     let t = this;
     t.eventModel.uniqueNumber = t.userId();
+    //t.id = 101346559;
+    t.eventModel.uniqueNumber = t.userId();
+    console.log(t.userId());
     t.PostIdUser(t.eventModel, t.eventInfo);
     t.postFilter(t.filterModel);
   }
 
   public async PostIdUser(eventModel: EventModel, eventInfo: EventInfoModel) {
-    //debugger
     let t = this;
     await lastValueFrom(this.groupService.RegisterEvent(eventModel, eventInfo))
       .then(response => {
@@ -72,12 +74,11 @@ export class CatalogPageComponent implements OnInit {
   }
 
   public async postFilter(eventFilter: FilterModel) {
-    //debugger
     let t = this;
     await lastValueFrom(t.filterService.PostFilter(eventFilter))
       .then(response => {
         console.log(response)
-          t.modalService.showErrorModal("АШИПЬКА")
+        t.modalService.showErrorModal("АШИПЬКА")
       })
       .catch(ex => {
         console.log(ex)

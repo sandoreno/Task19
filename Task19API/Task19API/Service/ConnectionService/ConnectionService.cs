@@ -16,6 +16,7 @@ namespace Task19API.Service.ConnectionService
             builder.Services.AddTransient<IScrobbleRec, ScrobbleRecService>();
             builder.Services.AddTransient<IGroupResponse, GroupResponseService>();
             builder.Services.AddTransient<ITest, TestService>();
+            builder.Services.AddTransient<IVector, VectorService>();
         }
     }
 }
