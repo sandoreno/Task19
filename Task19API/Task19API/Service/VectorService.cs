@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 using Task19API.Data;
 using Task19API.DTOs;
 using Task19API.Interface;
@@ -15,11 +16,11 @@ namespace Task19API.Service
             _context = context;
         }
 
-        public async Task<List<int>> Vector(TestModelResponse model)
+        public async Task<VectorModel> Vector(TestModelResponse model)
         {
             try
             {
-                var groupIds = await _context.Answertolvls
+                var modelIds = await _context.Answertolvls
                         .Where(x => model.AnswerId
                         .Contains((int)x.AnswerId))
                         .Select(x => x.GroupId)
@@ -27,10 +28,37 @@ namespace Task19API.Service
 
                 var dict = await _context.Dicts
                         //.OrderBy(x => x.IdLevel3)
-                        .Select(x => groupIds.Contains(x.IdLevel3)?1:0)
+                        //.Select(x => modelIds.Contains(x.IdLevel3)?10:0)
+                        .Where(x => modelIds.Contains(x.IdLevel3))
+                        .Select(x => x.Level3)
                         .ToListAsync();
 
-                return dict;
+                var uniqueNumber = await _context.Groups
+                    .Where(x => dict.Contains(x.DirectionThree))
+                    .Select(x => x.UniqueNumber)
+                    .Distinct()
+                    .ToListAsync();
+
+                var idlevel3 = await _context.Dicts
+                    .Where(x => modelIds.Contains(x.IdLevel3))
+                    .Select(x => x.Level3)
+                .ToListAsync();
+
+                string srt = String.Join(" ", idlevel3)
+                    .Replace(":", " ")
+                    .Replace("?", " ")
+                    .Replace("!", " ")
+                    .Replace(";", " ")
+                    .Replace(".", " ")
+                    .Replace(",", " ")
+                    .Replace("ОНЛАЙН", "")
+                    .ToLower();
+
+                VectorModel vector = new VectorModel();
+                vector.vector = uniqueNumber;
+                vector.level3 = srt;
+
+                return vector;
             }
             catch (Exception ex)
             {
