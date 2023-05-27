@@ -26,7 +26,7 @@ namespace Task19API.Service
                         .ToListAsync();
 
                 var dict = await _context.Dicts
-                        .OrderBy(x => x.IdLevel3)
+                        //.OrderBy(x => x.IdLevel3)
                         .Select(x => groupIds.Contains(x.IdLevel3)?1:0)
                         .ToListAsync();
 
