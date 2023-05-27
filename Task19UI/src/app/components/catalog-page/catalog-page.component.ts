@@ -58,14 +58,12 @@ export class CatalogPageComponent implements OnInit {
     let t = this;
     await lastValueFrom(this.groupService.RegisterEvent(eventModel, eventInfo))
       .then(response => {
-        eventInfo = response
-        t.visitHistory = eventInfo.visitedGroups
-        t.recommendationGroups = eventInfo.scrobbleRecommendation
-        console.log(t.recommendationGroups)
-        console.log(t.visitHistory)
+        eventInfo = response;
+        t.visitHistory = eventInfo.visitedGroups;
+        t.recommendationGroups = eventInfo.scrobbleRecommendation;
       })
       .catch(ex => {
-        console.log(ex)
+        console.log(ex);
       })
       .finally(() => {
       })
@@ -83,11 +81,10 @@ export class CatalogPageComponent implements OnInit {
     let t = this;
     await lastValueFrom(t.filterService.PostFilter(eventFilter))
       .then(response => {
-        console.log(response);
       })
       .catch(ex => {
-        console.log(ex)
-      })
+        t.modalService.showErrorModal(ex);
+            })
       .finally(() => {
       })
   }
