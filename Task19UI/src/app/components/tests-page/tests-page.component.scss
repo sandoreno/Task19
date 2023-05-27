@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(13, 110, 253);
   animation: 0.5s ease-in;
   transition: 0.5s;
 }
@@ -11,11 +10,23 @@
 .test__content {
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(13, 110, 253, 0.5);;
+  border: 1px solid rgba(13, 140, 70, 0.5);;
   padding: 30px 40px 30px 40px;
   border-radius: 16px;
   width: 100%;
   max-width: 780px;
+  //opacity: 0;
+  animation: fade .7s ease;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+
 }
 
 .test__head {
@@ -24,15 +35,18 @@
 }
 
 .head__text {
+  color: rgba(13, 140, 70, .8);;
   width: 100%;
   max-width: 50%;
 }
 
 .head__cnt {
+  color: rgb(204, 34, 34);
   font-size: 20px;
 }
 
 .test__title {
+  color: var(--green);
   font-size: 30px;
   margin-bottom: 30px;
 }
@@ -59,29 +73,50 @@ margin-bottom: 10px;
 
 .next-btn {
   align-self: flex-end;
-  border: 1px solid rgba(13, 110, 253);
+  border: 1px solid transparent;
   padding: 12px 30px;
   border-radius: 16px;
   color: #fff;
-  background-color: rgba(13, 110, 253); ;
+  background-color: rgb(204, 34, 34); ;
   font-size: 20px;
+  transition: background-color .3s ease-in-out;
 }
-
 
 .answer{
   margin-bottom: 1.5rem;
   border-radius: 2rem;
-  border: 1px solid rgba(13, 110, 253, 0.8);
+  border: 1px solid rgba(13, 140, 70, .8);
   padding: 15px;
+  animation: fade .6s ease;
+}
+
+.answer:not(:last-of-type) {
+  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .answer-active{
-  background-color: rgba(13, 110, 253);
+  background-color: rgba(13, 140, 70, .8);
   color: white !important;
   margin-bottom: 1.5rem;
   border-radius: 2rem;
-  border: 1px solid rgba(13, 110, 253, 0.8);
+  border: 1px solid transparent;
   padding: 15px;
+  animation: smoothcolor .3s ease;
+}
+
+@keyframes smoothcolor {
+  0% {
+    background-color: rgba(13, 140, 70, .1);
+  }
+  100% {
+    background-color: rgba(13, 140, 70, .8);
+  }
+}
+
+.answer-active:not(:last-of-type) {
+  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 .sub-text{

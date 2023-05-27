@@ -97,7 +97,12 @@ body {
 
 .btn:hover {
   border-color: transparent !important;
-  background-color: rgba(204, 34, 34, 0.5) !important;
+  background-color: rgba(204, 34, 34, 0.8) !important;
+}
+
+.btn:active {
+  color: #f2f2f2 !important;
+  background-color: rgb(153, 12, 12) !important;
 }
 
 .ng-select .ng-select-container .ng-value-container .ng-placeholder {
@@ -124,4 +129,19 @@ body {
 
 .ng-select .ng-select-container:hover {
   border-color: rgba(13, 140, 70) !important;
+}
+
+.form-check-input {
+  cursor: pointer !important;
+}
+
+.form-check-input:checked {
+  border-color: rgb(204, 34, 34) !important;
+  background-color: rgb(204, 34, 34) !important;
+}
+
+.form-check-input:focus {
+  border-color: rgba(204, 34, 34, 0.2) !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(204, 34, 34, 0.25) !important;
 }
