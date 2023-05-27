@@ -24,7 +24,5 @@ namespace Task19API.Service
             var scrobbleGroups = await _desc.groupsDesc(scrobble);
             return scrobbleGroups;
         }
-        
-
     }
 }
