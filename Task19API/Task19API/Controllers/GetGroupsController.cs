@@ -35,10 +35,8 @@ namespace Task19API.Controllers
                 //
 
                 //using var client = new HttpClient();
-                //var scrobbles = await client.GetAsync($"http://localhost:8000/recommend/{user.UniqueNumber}/10");
-                //var recommendation = await scrobbles.Content.ReadAsStringAsync(); 
-                //recommendation = recommendation.Replace("[", "").Replace("]", ""); 
-                //var splitedRequest = recommendation.Split(",").Select(x => Convert.ToInt32(x)).ToList();
+                //var scrobblesResponse = await client.GetAsync($"http://localhost:8000/recommend/{user.UniqueNumber}/10");
+                //var scrobble = await _norm.NormalizeResponse(scrobblesResponse);
                 var scrobbleGroups = await _desc.groupsDesc(new List<int> { 801370979 });
                 //var userGroups = await _response.Response(visitedDesc, scrobbles);
                 UserGroupsResponse userGroupsResponse = new UserGroupsResponse();
