@@ -17,6 +17,8 @@ namespace Task19API.Service
             var groups = await _context.Scrobbles.Where(x => x.UserId == userId)
                 .Include(g => g.Group)
                 .Select(g => g.Group.UniqueNumber)
+                .Distinct()
+                .Take(10)
                 .ToListAsync();
 
             return groups;
