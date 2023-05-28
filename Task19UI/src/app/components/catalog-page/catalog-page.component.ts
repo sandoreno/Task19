@@ -1,10 +1,11 @@
 import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
-import { GroupService, UserService, FilterService, ModalService } from 'src/app/shared/services';
+import { elementAt, lastValueFrom } from 'rxjs';
+import { GroupService, UserService, FilterService, ModalService, VectorService } from 'src/app/shared/services';
 import { EventDays, EventFormat, EventTimes, EventDirection } from 'src/app/shared/constans';
-import { EventInfoModel, EventModel, GroupModelDTO, FilterModel } from 'src/app/shared/models';
+import { EventInfoModel, EventModel, GroupModelDTO, FilterModel, TestResponseModel } from 'src/app/shared/models';
 import { Router } from '@angular/router';
+import { EventDirectionType, EventFormatType, EventTimesType } from 'src/app/shared/enums';
 
 @Component({
   selector: 'app-catalog-page',
@@ -31,11 +32,12 @@ export class CatalogPageComponent implements OnInit {
     private userService: UserService,
     private filterService: FilterService,
     private modalService: ModalService,
-    private router: Router) {
+    private router: Router,
+    private vectorService: VectorService) {
     let t = this;
     t.userId = () => {
-      if (t.userService.credentials$) {
-        return t.userService.credentials$; //заглушка поправить
+      if (t.userService.getId()) {
+        return t.userService.getId(); //заглушка поправить
       }
       else {
         //t.router.navigate(['dashboard'])
@@ -49,22 +51,27 @@ export class CatalogPageComponent implements OnInit {
   ngOnInit(): void {
     let t = this;
     t.eventModel.uniqueNumber = t.userId();
-    //t.id = 101346559;
-    //console.log(localStorage['id']);
-    //t.eventModel.uniqueNumber = t.userId();
-    //console.log(t.userId());
-    t.eventModel.uniqueNumber = localStorage['idUser'];
-    t.PostIdUser(t.eventModel, t.eventInfo);
-    t.postFilter(t.filterModel);
+    if(t.userId()){
+      t.PostIdUser();
+    }
+    else{
+      let answers = JSON.parse(sessionStorage.getItem('lvl3answers'));
+      let vectorAnswers:  TestResponseModel = {
+        questionId: 3,
+        answerId: answers
+      };
+      t.getGroupsByVector(vectorAnswers)
+    }
   }
 
-  public async PostIdUser(eventModel: EventModel, eventInfo: EventInfoModel) {
+  public async PostIdUser() {
     let t = this;
-    await lastValueFrom(this.groupService.RegisterEvent(eventModel, eventInfo))
+    await lastValueFrom(this.groupService.RegisterEvent(t.eventModel))
       .then(response => {
-        eventInfo = response;
-        t.visitHistory = eventInfo.visitedGroups;
-        t.recommendationGroups = eventInfo.scrobbleRecommendation;
+        t.eventInfo = response;
+        t.visitHistory = response.visitedGroups;
+        t.recommendationGroups = response.scrobbleRecommendation;
+        t.getByFilter()
       })
       .catch(ex => {
         console.log(ex);
@@ -73,24 +80,56 @@ export class CatalogPageComponent implements OnInit {
       })
   }
 
-  PostFilterBtn(searchValue: string) {
+  PostFilterBtn() {
     let t = this;
-    console.log(searchValue);
-    t.filterModel.search = searchValue;
-    console.log(t.filterModel);
-    t.postFilter(t.filterModel);
+    t.getByFilter();
   }
 
-  public async postFilter(eventFilter: FilterModel) {
+  public async getByFilter() {
     let t = this;
-    await lastValueFrom(t.filterService.PostFilter(eventFilter))
-      .then(response => {
-      })
-      .catch(ex => {
-        t.modalService.showErrorModal(ex);
-      })
-      .finally(() => {
-      })
+    let result = t.eventInfo.visitedGroups; 
+    if(t.filterModel.direction != EventDirectionType.default.toString()){
+      result = result.filter(elem => elem.DirectionOne == t.filterModel.direction)
+    }
+    if(t.filterModel.search){
+      let searchTextLow = t.searchText.toLowerCase();
+      result = result.filter(elem => 
+        elem.DirectionOne.toLowerCase().indexOf(searchTextLow) != -1
+      || elem.DirectionTwo.toLowerCase().indexOf(searchTextLow) != -1
+      || elem.DirectionThree.toLowerCase().indexOf(searchTextLow) != -1);
+    }
+    if(t.filterModel.time != EventTimesType.default){
+      let searchTime = t.filterModel.time;
+      result = result.filter(elem => elem.ActivePeriod.indexOf(searchTime.toString()) != -1)
+    }
+    if(t.filterModel.format != EventFormatType.default){
+      let searchTextLow = EventFormat.find(elem=> elem.value == t.filterModel.format).label.toLowerCase();
+      result = result.filter(elem => 
+        elem.DirectionOne.toLowerCase().indexOf(searchTextLow) != -1
+      || elem.DirectionTwo.toLowerCase().indexOf(searchTextLow) != -1
+      || elem.DirectionThree.toLowerCase().indexOf(searchTextLow) != -1);
+    }
+    t.visitHistory = result;
+    // await lastValueFrom(t.filterService.PostFilter(eventFilter))
+    //   .then(response => {
+    //   })
+    //   .catch(ex => {
+    //     t.modalService.showErrorModal("Не могу получить группы по фильтру");
+    //   })
+    //   .finally(() => {
+    //   })
+  }
+
+  public async getGroupsByVector(vectorAnsers: TestResponseModel){
+    let t = this;
+    await lastValueFrom(t.vectorService.GetGroupsByVector(vectorAnsers))
+    .then(response => {
+      t.visitHistory = response.vectorRec;
+      t.recommendationGroups = response.newRec;
+    })
+    .catch(ex => {
+      t.modalService.showErrorModal("Не могу получить группы по вектору")
+    })
   }
 
 }

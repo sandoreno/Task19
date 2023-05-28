@@ -5,7 +5,4 @@ export class EventModel{
   format: string = "";
   day: string = "";
   time: string = "";
-    //id: number;
-  //groupId: number;
-  //// ... и т.д.
 }
