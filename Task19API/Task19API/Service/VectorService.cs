@@ -40,11 +40,10 @@ namespace Task19API.Service
                     .Distinct()
                     .ToList();
 
-                var contextItemsToid = await _context.ItemToIds.ToListAsync();
-                var ids = contextItemsToid
+                var ids = await _context.ItemToIds
                     .Where(x => uniqueNumber.Contains(x.UniqueNumber))
                     .Select(x => x.Id)
-                    .ToList();
+                    .ToListAsync();
                     
 
                 var idlevel3 = await _context.Dicts

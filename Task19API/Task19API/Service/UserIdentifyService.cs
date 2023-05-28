@@ -27,18 +27,18 @@ namespace Task19API.Service
                 {
                     return null;
                 }
-                //var countUser = 0; 
+                var countUser = 0;
                 //var birthDate = DateOnly.ParseExact(user.BirthDate, "dd.MM.yyyy", CultureInfo.InvariantCulture);
-                var userModel = await _context.Users
-                    .FirstOrDefaultAsync();
-                //var countUsers = await _context.Users
-                //    .Where(x=>x.Birthdate == birthDate)
-                //    .ToListAsync();
-                //countUser = countUsers.Count();
-                //var random = new Random();
-                //var Id = random.Next(0, countUser);
-                //var userId = countUsers[Id].UniqueNumber;
-                return userModel.UniqueNumber;
+                //var userModel = await _context.Users
+                //    .FirstOrDefaultAsync();
+                var countUsers = await _context.Users
+                    //.Where(x => x.Birthdate == birthDate)
+                    .ToListAsync();
+                countUser = countUsers.Count();
+                var random = new Random();
+                var Id = random.Next(0, countUser);
+                var userId = countUsers[Id].UniqueNumber;
+                return userId;
             }
             catch (Exception ex) 
             { 
