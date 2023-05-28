@@ -1,4 +1,4 @@
-export enum EventTimes{
+export enum EventTimesType{
   default = -200,
   time8 = 0,
   time9 = 1,

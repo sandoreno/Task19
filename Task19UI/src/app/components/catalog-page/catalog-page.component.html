@@ -4,7 +4,7 @@
     <h1 class="title">Поиск занятий</h1>
     <div class="search__area">
       <input type="text" name="search" class="header__search" [(ngModel)]="searchText">
-      <button class="btn search__btn btn-reset" (click)="PostFilterBtn(searchText)">
+      <button class="btn search__btn btn-reset" (click)="PostFilterBtn()">
         Найти
       </button>
     </div>
@@ -70,7 +70,7 @@
             <p class="group__time">{{item.activePeriod}}{{item.closePeriod}}</p>
             <div class="cards__btns">
               <button href="#" class="btn btn-primary enroll-btn">Записаться</button>
-              <button class="btn-reset">Узнать больше</button>
+              <!-- <button class="btn-reset">Узнать больше</button> -->
             </div>
           </div>
         </li>

@@ -3,4 +3,5 @@ export class UserModel{
     public middleName: string = "";
     public lastName: string = "";
     public birthDate: string = "";
+    public asRegistred: boolean = false;
 }

@@ -1,4 +1,4 @@
-export enum EventDays{
+export enum EventDaysType{
   default = -200,
   Monday = 1,
   Tuesday = 2,
