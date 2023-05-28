@@ -10,36 +10,40 @@
       <div class="modal-container">
         <div class="row">
           <div class="col">
-            <h1 class="text-center modal__tile">Заполните данные</h1>
+            <h1 class="text-center modal__title">Заполните данные</h1>
           </div>
         </div>
         <form [formGroup]="userForm">
           <div class="row mb-3">
             <div class="col">
-              <input type="text" class="main-input" placeholder="Фамилия" formControlName="middleName" autofocus="">
-              <label *ngIf="checkIsInvalid(userForm.controls['middleName'])" class="text-danger">Поле обязательно для
+              <input type="text" class="main-input" placeholder="Фамилия" formControlName="middleName" autofocus=""
+                pattern="[а-яА-Я- ]*">
+              <label *ngIf="checkIsInvalid(userForm.controls['middleName'])" class="text-danger">Проверьте поле
                 заполнения</label>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
-              <input type="text" class="main-input" placeholder="Имя" formControlName="firstName" autofocus="">
-              <label *ngIf="checkIsInvalid(userForm.controls['firstName'])" class="text-danger">Поле обязательно для
+              <input type="text" class="main-input" placeholder="Имя" formControlName="firstName" autofocus=""
+                pattern="[а-яА-Я- ]*">
+              <label *ngIf="checkIsInvalid(userForm.controls['firstName'])" class="text-danger">Проверьте поле
                 заполнения</label>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
-              <input type="text" class="main-input" placeholder="Отчество" formControlName="lastName" autofocus="">
-              <label *ngIf="checkIsInvalid(userForm.controls['lastName'])" class="text-danger">Поле обязательно для
+              <input type="text" class="main-input" placeholder="Отчество" formControlName="lastName" autofocus=""
+                pattern="[а-яА-Я- ]*">
+              <label *ngIf="checkIsInvalid(userForm.controls['lastName'])" class="text-danger">Проверьте поле
                 заполнения</label>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
               <label for="birthDate" class="birthDate">Дата рождения</label>
-              <input type="date" id="birthDate" class="main-input" formControlName="birthDate">
-              <label *ngIf="checkIsInvalid(userForm.controls['birthDate'])" class="text-danger">Поле обязательно для
+              <input type="date" [min]="minDate" [max]="maxDate" id="birthDate" class="main-input"
+                formControlName="birthDate" pattern="[1-2]{1}[0-9]{1}[0-9]{1}[0-9]{1}-[0-9]{2}-[0-9]{2}">
+              <label *ngIf="checkIsInvalid(userForm.controls['birthDate'])" class="text-danger">Проверьте поле
                 заполнения</label>
             </div>
           </div>
@@ -50,7 +54,7 @@
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col text-center">
+          <div class="col text-center regCheck">
             <input class="form-check-input me-2" type="checkbox" [(ngModel)]="user.asRegistred">
             <label>Войти как зарегистрированный юзер</label>
           </div>

@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    RegistryModal
+    RegistryModal,
   ],
   imports: [
     CommonModule,

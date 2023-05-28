@@ -25,7 +25,7 @@ import {PreloaderComponent} from './shared/components/preloader/preloader.compon
     Comp_Dir,
     TabsComponent,
     TabComponent,
-    PreloaderComponent
+    PreloaderComponent,
   ],
   imports: [
     BrowserModule,
