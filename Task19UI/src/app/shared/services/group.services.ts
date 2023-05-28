@@ -23,7 +23,7 @@ export class GroupService {
   //  return this.http.get<EventModel[]>(environment.apiUrl + this.url);
   //}
 
-  public RegisterEvent(event: EventModel, eventInfo:EventInfoModel) : Observable<EventInfoModel> {
+  public RegisterEvent(event: EventModel) : Observable<EventInfoModel> {
     return this.http.post<EventInfoModel>(environment.apiUrl + this.url, event);
   }
 }

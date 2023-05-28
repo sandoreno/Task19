@@ -33,16 +33,18 @@ namespace Task19API.Service
                         .Select(x => x.Level3)
                         .ToListAsync();
                 
-                var uniqueNumber = await _context.Groups
+                var contextGroups = await _context.Groups.ToListAsync();
+                var uniqueNumber = contextGroups
                     .Where(x => dict.Contains(x.DirectionThree))
                     .Select(x => x.UniqueNumber)
                     .Distinct()
-                    .ToListAsync();
+                    .ToList();
 
-                var ids = await _context.ItemToIds
+                var contextItemsToid = await _context.ItemToIds.ToListAsync();
+                var ids = contextItemsToid
                     .Where(x => uniqueNumber.Contains(x.UniqueNumber))
                     .Select(x => x.Id)
-                    .ToListAsync();
+                    .ToList();
                     
 
                 var idlevel3 = await _context.Dicts

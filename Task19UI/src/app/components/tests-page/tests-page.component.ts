@@ -3,7 +3,7 @@ import { lastValueFrom } from 'rxjs';
 import { TestModel } from 'src/app/shared/models/test.model';
 import { TestService } from 'src/app/shared/services/test.service';
 import { Router } from '@angular/router';
-import { ModalService } from 'src/app/shared/services';
+import { ModalService, VectorService } from 'src/app/shared/services';
 import { AvailableAnswerCount } from 'src/app/shared/constans';
 import { TestResponseModel } from 'src/app/shared/models';
 import { QuestionModel } from 'src/app/shared/models/question.model';
@@ -25,12 +25,13 @@ export class TestsPageComponent implements OnInit{
   constructor(
     private testService: TestService,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private vectorService: VectorService
     ){
       let t = this;
       t.getAvailableAnswerCount = () => {
-        let result = AvailableAnswerCount.find(element => element.level_id == this.testModel.question.questionId);
-        return result.answerCount ?? 3;
+        let result = AvailableAnswerCount.find(element => element.level_id == t.testModel.question.questionId);
+        return result.answerCount;
       }
       t.getCheckedCount = () => {
         let result = t.testModel.answerModels.filter(elem => elem.isChecked).length;
@@ -54,10 +55,6 @@ export class TestsPageComponent implements OnInit{
 
   public async sendAnswer(){
     let t = this;
-    if(t.testModel.question.questionId == 3){
-      t.router.navigate(['catalog']);
-      return;
-    }
     if(t.getCheckedCount() > t.getAvailableAnswerCount()){
       t.modalService.showErrorModal("Выберите меньшее количество категорий")
     }
@@ -67,6 +64,10 @@ export class TestsPageComponent implements OnInit{
         t.answerModel.answerId.push(answer.id);
       }
     });
+    if(t.testModel.question.questionId === 3){
+      sessionStorage.setItem('lvl3answers', JSON.stringify(t.answerModel.answerId));
+      t.router.navigate(['catalog']);
+    }
     t.answerModel.questionId++;
     t.getQuestion();
   }

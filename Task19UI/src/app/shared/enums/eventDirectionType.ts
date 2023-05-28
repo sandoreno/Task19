@@ -1,4 +1,4 @@
-export enum EventDirection{
+export enum EventDirectionType{
   default = -200,
   Football = 0,
   Basketball  = 1,
