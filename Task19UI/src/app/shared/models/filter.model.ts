@@ -1,6 +1,6 @@
 export class FilterModel{
     search: string = "";
-    direction: string = "";
+    direction: number;
     format: number;
     day: number;
     time: number;

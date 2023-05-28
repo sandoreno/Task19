@@ -9,15 +9,19 @@ import { VectorResponseModel } from '../models/vectorResponse.model';
   providedIn: 'root'
 })
 export class VectorService {
-    public lvl3Answers: number[] = [];
-    public setAnswers(answers: number[]){
-        this.lvl3Answers  = answers;
-    }
-
-    public getAnswers(){
-        return this.lvl3Answers;
-    }
   constructor(private http: HttpClient) { }
+
+  public setAnswers(answers: number[]){
+    sessionStorage.setItem('lvl3answers', JSON.stringify(answers));
+  }
+
+  public getAnswers(){
+    return JSON.parse(sessionStorage.getItem('lvl3answers'));
+  }
+
+  public clearAnswers(){
+    sessionStorage.removeItem('lvl3answers');
+  }
 
   public GetGroupsByVector(answers: TestResponseModel): Observable<VectorResponseModel> {
     return this.http.post<VectorResponseModel>(environment.apiUrl + '/vector', answers);

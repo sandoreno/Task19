@@ -28,7 +28,7 @@ export class StartPageComponent {
     private userService: UserService,
     private groupService: GroupService,
     private router: Router
-  ){}
+  ){ }
 
   public async ShowRegistryModal() {
     let t = this;
@@ -56,11 +56,11 @@ export class StartPageComponent {
     await lastValueFrom(t.userService.RegisterUser(user))
     .then(response => {
       if(response){
-        //localStorage['idUser'] = response;
         t.userService.setCredential(response);
         t.router.navigate(['catalog']);
       }
       else{
+        t.userService.setCredential(-200);
         t.router.navigate(['tests']);
       }
     })
