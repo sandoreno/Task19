@@ -1,4 +1,5 @@
-<div class="header">
+
+<div class="header"  >
   <div class="container header__container">
     <h1 class="title">Поиск занятий</h1>
     <div class="search__area">
@@ -40,7 +41,9 @@
   </div>
 </div>
 
-<my-tabs>
+<app-preloader-comp *ngIf = "!visitHistory"></app-preloader-comp>
+
+<my-tabs *ngIf = 'visitHistory'>
   <my-tab tabTitle="Ваши рекомендации" class="tab__btn">
     <div class="container cards__container">
       <ul class="cards__list list-reset">

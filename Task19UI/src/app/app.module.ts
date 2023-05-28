@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistryModule } from './shared/modals/registry-modal/registry.module';
 import { TabsComponent } from './shared/components/tabs/tabs.component';
 import { TabComponent } from './shared/components/tabs/tab/tab.component';
+import {PreloaderComponent} from './shared/components/preloader/preloader.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TabComponent } from './shared/components/tabs/tab/tab.component';
     CustomFilterPipe,
     Comp_Dir,
     TabsComponent,
-    TabComponent
+    TabComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,

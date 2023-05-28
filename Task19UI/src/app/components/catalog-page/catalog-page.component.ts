@@ -32,17 +32,19 @@ export class CatalogPageComponent implements OnInit {
     private filterService: FilterService,
     private modalService: ModalService,
     private router: Router) {
-      let t = this;
-      t.userId = () => {
-        if(t.userService.credentials$){
-          return t.userService.credentials$; //заглушка поправить
-        }
-        else{
-          //t.router.navigate(['dashboard'])
-        }
-        return 0;
+    let t = this;
+    t.userId = () => {
+      if (t.userService.credentials$) {
+        return t.userService.credentials$; //заглушка поправить
       }
-     }
+      else {
+        //t.router.navigate(['dashboard'])
+      }
+      return 0;
+    }
+  }
+
+  loader = true;
 
   ngOnInit(): void {
     let t = this;
@@ -86,7 +88,7 @@ export class CatalogPageComponent implements OnInit {
       })
       .catch(ex => {
         t.modalService.showErrorModal(ex);
-            })
+      })
       .finally(() => {
       })
   }
