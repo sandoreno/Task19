@@ -20,6 +20,11 @@ export class TestsPageComponent implements OnInit{
     questionId: 1,
     answerId: []
   }
+
+  isError: boolean = false;
+
+  loader: true;
+
   getAvailableAnswerCount: () => number;
   getCheckedCount: () => number;
 
@@ -46,6 +51,7 @@ export class TestsPageComponent implements OnInit{
         return result;
       }
     }
+  }
   ngOnInit(): void {
     this.getQuestion();
   }
@@ -58,11 +64,12 @@ export class TestsPageComponent implements OnInit{
     t.testModel.answerModels.forEach(e => e.isChecked = false)
    })
    .catch(ex => {
-    t.modalService.showErrorModal(ex)
+     t.modalService.showErrorModal("Не удалось загрузить тест !")
+        t.isError = true;
    })
   }
 
-  public async sendAnswer(){
+  public async sendAnswer() {
     let t = this;
     if(t.getCheckedCount() > t.getAvailableAnswerCount()){
       t.modalService.showErrorModal("Выберите меньшее количество категорий");
@@ -70,7 +77,7 @@ export class TestsPageComponent implements OnInit{
     }
     t.answerModel.answerId = [];
     t.testModel.answerModels.forEach(answer => {
-      if(answer.isChecked){
+      if (answer.isChecked) {
         t.answerModel.answerId.push(answer.id);
       }
     });
@@ -83,7 +90,7 @@ export class TestsPageComponent implements OnInit{
     t.getQuestion();
   }
 
-  public isDisabled(): boolean{
+  public isDisabled(): boolean {
     let t = this;
     return t.testModel.answerModels.filter(elem => elem.isChecked).length >= t.getAvailableAnswerCount();
   }

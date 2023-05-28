@@ -97,6 +97,7 @@
 
   .modal-container {
     padding: 1rem;
+    border-radius: 1.5rem;
   }
 
   .main-input {
@@ -107,6 +108,12 @@
   .submit__btn {
     padding: 5px 20px;
     font-size: 16px;
+  }
+
+  .regCheck {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 13px;
   }
 
 }
