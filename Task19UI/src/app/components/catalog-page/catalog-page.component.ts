@@ -1,5 +1,5 @@
 import { group } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { elementAt, lastValueFrom } from 'rxjs';
 import { GroupService, UserService, FilterService, ModalService, VectorService } from 'src/app/shared/services';
 import { EventDays, EventFormat, EventTimes, EventDirection } from 'src/app/shared/constans';
@@ -35,14 +35,11 @@ export class CatalogPageComponent implements OnInit {
     private router: Router,
     private vectorService: VectorService) {
     let t = this;
+    if(!t.userService.getCredential()){
+      t.router.navigate(['dashboard'])
+    }
     t.userId = () => {
-      if (t.userService.getId()) {
-        return t.userService.getId(); //заглушка поправить
-      }
-      else {
-        //t.router.navigate(['dashboard'])
-      }
-      return 0;
+        return +t.userService.getCredential(); //заглушка поправить
     }
   }
 
@@ -51,7 +48,7 @@ export class CatalogPageComponent implements OnInit {
   ngOnInit(): void {
     let t = this;
     t.eventModel.uniqueNumber = t.userId();
-    if(t.userId()){
+    if(!t.userId()){
       t.PostIdUser();
     }
     else{
@@ -88,8 +85,8 @@ export class CatalogPageComponent implements OnInit {
   public async getByFilter() {
     let t = this;
     let result = t.eventInfo.visitedGroups; 
-    if(t.filterModel.direction != EventDirectionType.default.toString()){
-      result = result.filter(elem => elem.DirectionOne == t.filterModel.direction)
+    if(t.filterModel.direction != EventDirectionType.default){
+      //result = result.filter(elem => elem.DirectionOne == t.filterModel.direction)
     }
     if(t.filterModel.search){
       let searchTextLow = t.searchText.toLowerCase();
@@ -131,7 +128,6 @@ export class CatalogPageComponent implements OnInit {
       t.modalService.showErrorModal("Не могу получить группы по вектору")
     })
   }
-
 }
 
 
