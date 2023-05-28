@@ -38,7 +38,7 @@ export class CatalogPageComponent implements OnInit {
           return t.userService.credentials$; //заглушка поправить
         }
         else{
-          t.router.navigate(['dashboard'])
+          //t.router.navigate(['dashboard'])
         }
         return 0;
       }

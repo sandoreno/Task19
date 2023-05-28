@@ -1,9 +1,9 @@
 .nav-tabs {
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
-  padding-right: 335px;
-  padding-left: 315px;
+  //padding-right: 400px;
+  //padding-left: 400px;
 }
 
 .tab__item {
@@ -15,11 +15,21 @@
   padding-bottom: 0;
   text-align: center;
   background-color: rgb(134, 134, 134);
-  border-radius: 8px;
+  //border-radius: 8px;
   margin-bottom: 20px;
   border-color: transparent;
   transition: background-color 0.8s ease-in-out;
   min-width: 320px;
+}
+
+.tab__item:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.tab__item:not(:last-child) {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .tab__item:hover {
