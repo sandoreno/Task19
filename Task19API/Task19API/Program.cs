@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 
 app.UseCors(op => op.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

@@ -8,7 +8,7 @@ namespace Task19API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VectorController : ControllerBase
+    public class VectorController : Controller
     {
         private readonly IVector _vector;
         private readonly INormalize _norm;

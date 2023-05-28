@@ -11,7 +11,7 @@ namespace Task19API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : Controller
     {
         private readonly IUser _userId;
 

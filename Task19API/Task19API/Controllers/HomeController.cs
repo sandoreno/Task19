@@ -5,7 +5,7 @@ namespace Task19API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomeController : ControllerBase
+    public class HomeController : Controller
     {
 
         [HttpGet("/home")]

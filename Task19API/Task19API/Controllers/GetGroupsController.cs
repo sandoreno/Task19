@@ -9,7 +9,7 @@ namespace Task19API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GetGroupsController : ControllerBase
+    public class GetGroupsController : Controller
     {
         private readonly IUserGroups _userGroups;
         private readonly IGroupDescription _desc;
