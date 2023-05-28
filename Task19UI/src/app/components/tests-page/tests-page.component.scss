@@ -88,7 +88,7 @@
   transition: background-color .3s ease-in-out;
 }
 
-.answer{
+.answer {
   margin: 5px;
   border-radius: 2rem;
   border: 1px solid rgba(13, 140, 70, .8);
@@ -96,7 +96,7 @@
   animation: fade .6s ease;
 }
 
-.answer-active{
+.answer-active {
   background-color: rgba(13, 140, 70, .8);
   color: white !important;
   margin: 5px;
@@ -116,7 +116,28 @@
   }
 }
 
-.sub-text{
-  color: rgb(0,0,0,0.5);
+.sub-text {
+  color: rgb(0, 0, 0, 0.5);
   font-size: 20px
+}
+
+
+@media (max-width: 576px) {
+  .head__text {
+    font-size: 12px;
+  }
+
+  .test__title {
+    font-size: 20px;
+  }
+
+  .next-btn {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .test__content {
+    padding: 20px;
+  }
+
 }

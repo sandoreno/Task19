@@ -14,7 +14,7 @@
   background-color: transparent;
 }
 
-.modal__tile {
+.modal__title {
   font-size: 3rem;
   color: var(--green);
   margin-bottom: 20px;
@@ -71,4 +71,42 @@
 
 .float-end:hover {
   opacity: 1;
+}
+
+
+@media (max-width: 1000px) {
+  .modal__title {
+    font-size: 2rem;
+  }
+
+  .modal-container {
+    padding: 2rem;
+  }
+
+  .submit__btn {
+    padding: 5px 40px;
+    font-size: 18px;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal__title {
+    font-size: 22px;
+  }
+
+  .modal-container {
+    padding: 1rem;
+  }
+
+  .main-input {
+    padding: 12px 18px;
+    font-size: 15px;
+  }
+
+  .submit__btn {
+    padding: 5px 20px;
+    font-size: 16px;
+  }
+
 }
