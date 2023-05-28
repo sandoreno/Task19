@@ -1,0 +1,31 @@
+version: "3.9"
+networks:
+  networks-container:
+    driver: bridge
+services:
+  app: 
+    container_name: task19api
+    build:
+      context: ./Task19API
+      dockerfile: ./Task19API\Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - networks-container
+    depends_on:
+      - postgres_db
+  postgres_db:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: 19task
+    ports:
+      - "5432:5432"
+    networks:
+      - networks-container
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
