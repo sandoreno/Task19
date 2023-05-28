@@ -21,7 +21,7 @@ export class CatalogPageComponent implements OnInit {
   visitHistory: any[];
   recommendationGroups: any[];
   filterModel: FilterModel = new FilterModel;
-  public eventFormat = EventFormat;
+  public eventFormat= EventFormat;
   public eventDays = EventDays;
   public eventTimes = EventTimes;
   public eventDirection = EventDirection;
@@ -89,7 +89,7 @@ export class CatalogPageComponent implements OnInit {
       //result = result.filter(elem => elem.DirectionOne == t.filterModel.direction)
     }
     if(t.filterModel.search){
-      let searchTextLow = t.searchText.toLowerCase();
+      let searchTextLow = t.filterModel.search.toLowerCase();
       result = result.filter(elem => 
         elem.DirectionOne.toLowerCase().indexOf(searchTextLow) != -1
       || elem.DirectionTwo.toLowerCase().indexOf(searchTextLow) != -1
@@ -100,7 +100,7 @@ export class CatalogPageComponent implements OnInit {
       result = result.filter(elem => elem.ActivePeriod.indexOf(searchTime.toString()) != -1)
     }
     if(t.filterModel.format != EventFormatType.default){
-      let searchTextLow = EventFormat.find(elem=> elem.value == t.filterModel.format).label.toLowerCase();
+      let searchTextLow = t.eventFormat.find(elem=> elem.value == t.filterModel.format).label.toLowerCase();
       result = result.filter(elem => 
         elem.DirectionOne.toLowerCase().indexOf(searchTextLow) != -1
       || elem.DirectionTwo.toLowerCase().indexOf(searchTextLow) != -1

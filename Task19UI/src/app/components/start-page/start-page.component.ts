@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { lastValueFrom } from 'rxjs';
 import { UserModel, GroupModelDTO, EventModel, EventInfoModel } from 'src/app/shared/models';
-import { UserService, GroupService } from 'src/app/shared/services';
+import { UserService, GroupService, VectorService } from 'src/app/shared/services';
 import { RegistryModal } from '../../shared/modals/registry-modal/registry.modal';
 import { Router } from '@angular/router';
 
@@ -27,8 +27,12 @@ export class StartPageComponent {
     private modalService: NgbModal,
     private userService: UserService,
     private groupService: GroupService,
-    private router: Router
-  ){ }
+    private router: Router,
+    private vectorService: VectorService
+  ){
+    this.userService.clearCredential();
+    this.vectorService.clearAnswers();
+   }
 
   public async ShowRegistryModal() {
     let t = this;

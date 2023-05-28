@@ -3,8 +3,8 @@
   <div class="container header__container">
     <h1 class="title">Поиск занятий</h1>
     <div class="search__area">
-      <input type="text" name="search" class="header__search" [(ngModel)]="searchText">
-      <button class="btn search__btn btn-reset" (click)="PostFilterBtn()">
+      <input type="text" name="search" class="header__search" [(ngModel)]="filterModel.search">
+      <button class="btn search__btn btn-reset">
         Найти
       </button>
     </div>
