@@ -16,14 +16,19 @@
         </div>
         <label>
           <h1 class="test__title">
-            Выберите категории: <span class="sub-text">(доступно {{getAvailableAnswerCount() - getCheckedCount()}})</span>
+            Выберите категории: <span class="sub-text">(доступно {{getAvailableAnswerCount() -
+              getCheckedCount()}})</span>
           </h1>
         </label>
-        <div class="row">
-            <div [ngClass]="{'answer-active': answer.isChecked, 'answer': !answer.isChecked}" class="col-auto" *ngFor="let answer of testModel.answerModels">
-              <input class="form-check-input" type="checkbox" name="flexCheckBoxDefault1" [(ngModel)]="answer.isChecked" [disabled]="isDisabled() && !answer.isChecked">
-              <label class="form-check-label">{{answer.answer}}</label>
-            </div>
+        <app-preloader-comp *ngIf="!testModel.answerModels"></app-preloader-comp>
+
+        <div class="row" *ngIf="testModel.answerModels">
+          <div [ngClass]="{'answer-active': answer.isChecked, 'answer': !answer.isChecked}" class="col-auto"
+            *ngFor="let answer of testModel.answerModels">
+            <input class="form-check-input" type="checkbox" name="flexCheckBoxDefault1" [(ngModel)]="answer.isChecked"
+              [disabled]="isDisabled() && !answer.isChecked">
+            <label class="form-check-label">{{answer.answer}}</label>
+          </div>
         </div>
         <button class="btn next-btn btn-reset" (click)="sendAnswer()">Далее</button>
       </div>

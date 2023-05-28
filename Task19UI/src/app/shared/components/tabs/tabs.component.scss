@@ -56,3 +56,24 @@
 .active:active {
   background-color: rgb(7, 122, 59);
 }
+
+@media (max-width: 768px) {
+  .tab__item {
+    padding: 14px 16px;
+    font-size: 14px;
+    min-width: 174px;
+  }
+
+  .tab__item p {
+    margin: 0;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .tab__item {
+    padding: 14px 7px;
+    font-size: 14px;
+    min-width: 144px;
+  }
+}
