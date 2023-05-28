@@ -60,6 +60,10 @@ namespace Task19API.Service
                     .Replace(".", " ")
                     .Replace(",", " ")
                     .Replace("ОНЛАЙН", "")
+                    .Replace("-", " ")
+                    .Replace("(", " ")
+                    .Replace(")", " ")
+                    .Replace("=", " ")
                     .ToLower();
 
                 VectorModel vector = new VectorModel();

@@ -1,34 +1,45 @@
-version: "3"
-services: 
-  proxy:
-    build: 
-      context: ./Proxy
-      dockerfile: Dockerfile
-    ports: 
-      - "80:80"
-    restart: always
-  client:
-    build:
-      context: ./Task19UI
-      dockerfile: Dockerfile
-    ports: 
-      - "9000:80"
-  api:
-    build: 
-      context: ./Task19API
-      dockerfile: ./Task19API/Dockerfile
-    ports: 
-      - "5000:80"
+version: "3.8"
+networks:
+  deploy-lan:
+    driver: bridge
+services:
   postgres_db:
     container_name: postgres
     image: postgres:latest
+    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: 19task
     ports:
       - "5432:5432"
+    networks:
+      - deploy-lan
     volumes:
       - postgres-data:/var/lib/postgresql/data
+  api:
+    container_name: api
+    restart: unless-stopped
+    build:
+      context: ./Task19API
+      dockerfile: ./Task19API/Dockerfile
+    ports:
+      - 6578:8800
+    environment:
+      - ASPNETCORE_ENVIRONMENT=LocalDocker
+      - ASPNETCORE_URLS=http://+:8800
+    networks:
+      - deploy-lan
+    depends_on:
+      - postgres_db
+  web:
+    container_name: ui
+    restart: unless-stopped
+    build:
+      context: ./Task19UI
+    ports:
+      - '8080:80'
+    depends_on:
+      - api
 volumes:
   postgres-data:

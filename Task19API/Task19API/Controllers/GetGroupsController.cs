@@ -36,19 +36,19 @@ namespace Task19API.Controllers
                 var visitedDesc = await _desc.groupsDesc(visitedGroups);
                 //
 
-                //using var client = new HttpClient();
-                //var scrobblesResponse = await client.GetAsync($"http://localhost:8000/recommend/{user.UniqueNumber}/10");
+                using var client = new HttpClient();
+                var scrobblesResponse = await client.GetAsync($"http://localhost:8000/recommend_for_user/{user.UniqueNumber}/10");
                 //var scrobble = await _norm.NormalizeResponse(scrobblesResponse);
 
-                var scrobbleGroups = await _desc.groupsDesc(new List<int> { 801347688 });
+                //var scrobbleGroups = await _desc.groupsDesc(new List<int> { 801347688 });
 
-                //var userGroups = await _response.Response(visitedDesc, scrobblesResponse);
+                var userGroups = await _response.Response(visitedDesc, scrobblesResponse);
 
-                UserGroupsResponse userGroupsResponse = new UserGroupsResponse();
-                userGroupsResponse.ScrobbleRecommendation = scrobbleGroups;
-                userGroupsResponse.visitedGroups = visitedDesc;
+                //UserGroupsResponse userGroupsResponse = new UserGroupsResponse();
+                //userGroupsResponse.ScrobbleRecommendation = scrobbleGroups;
+                //userGroupsResponse.visitedGroups = visitedDesc;
 
-                return Ok(userGroupsResponse);            //userGroups <--> userGroupsResponse                                                     
+                return Ok(userGroups);            //userGroups <--> userGroupsResponse                                                     
             }
             catch(Exception ex)
             {
