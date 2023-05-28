@@ -22,11 +22,7 @@
         <div class="row">
             <div [ngClass]="{'answer-active': answer.isChecked, 'answer': !answer.isChecked}" class="col-auto" *ngFor="let answer of testModel.answerModels">
               <input class="form-check-input" type="checkbox" name="flexCheckBoxDefault1" [(ngModel)]="answer.isChecked" [disabled]="isDisabled() && !answer.isChecked">
-<<<<<<< HEAD
-              <label class="form-check-label" >{{answer.answerText}}</label>
-=======
               <label class="form-check-label">{{answer.answer}}</label>
->>>>>>> main
             </div>
         </div>
         <button class="btn next-btn btn-reset" (click)="sendAnswer()">Далее</button>

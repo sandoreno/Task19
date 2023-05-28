@@ -4,11 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { GroupService, UserService, FilterService, ModalService } from 'src/app/shared/services';
 import { EventDays, EventFormat, EventTimes, EventDirection } from 'src/app/shared/constans';
 import { EventInfoModel, EventModel, GroupModelDTO, FilterModel } from 'src/app/shared/models';
-<<<<<<< HEAD
-import { TabsComponent } from '../../shared/components/tabs/tabs.component';
-=======
 import { Router } from '@angular/router';
->>>>>>> main
 
 @Component({
   selector: 'app-catalog-page',
@@ -28,22 +24,14 @@ export class CatalogPageComponent implements OnInit {
   public eventDays = EventDays;
   public eventTimes = EventTimes;
   public eventDirection = EventDirection;
-<<<<<<< HEAD
-  public userId = () => {
-    let id;
-    this.userService.credentials$.subscribe({ next(credentials) { id = credentials } });
-    return id;
-  }
-=======
   public userId: () => number;
 
->>>>>>> main
   constructor(
     private groupService: GroupService,
-    private userService: UserService, 
+    private userService: UserService,
     private filterService: FilterService,
     private modalService: ModalService,
-    private router: Router) { 
+    private router: Router) {
       let t = this;
       t.userId = () => {
         if(t.userService.credentials$){
