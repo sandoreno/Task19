@@ -1,1 +1,1 @@
-export * from './environment.test';
+export * from './enviroment';

@@ -42,9 +42,6 @@ namespace Task19API.Service
                 else {
                     // для 2 уровня
                     // для 3 уровня
-                    //var ansvers = await _context.Answers.Include(x => x.Answertolvl).ToListAsync();
-
-                    //var answertolvl = await _context.Answertolvls.Include(x => x.Answer).ToListAsync();
 
                     var lvl = await _context.Answertolvls
                         .Where(x => question.AnswerId.Contains(x.AnswerId))
@@ -53,7 +50,6 @@ namespace Task19API.Service
 
                     // для 2 уровня
                     var dict = new List<int>();
-                    //var dictContext = _context.Dicts.ToList();
                     if (question.QuestionId == 2)
                     {
                         dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel1)).Select(x => x.IdLevel2).Distinct().ToListAsync();
@@ -64,7 +60,7 @@ namespace Task19API.Service
                         dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel2)).Select(x => x.IdLevel3).Distinct().ToListAsync();
                     }
                     data.answerModels = await _context.Answertolvls
-                        .Where(x=> dict.Contains(Convert.ToInt32(x.GroupId)))
+                        .Where(x=> dict.Contains(x.GroupId))
                         .Select(x => new AnswerModel { Id = x.Answer.Id, Answer = x.Answer.Answer1 })
                         .Distinct()
                         .ToListAsync();
