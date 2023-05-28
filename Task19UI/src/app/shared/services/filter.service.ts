@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GroupModelDTO } from '../models/group.model';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/enviroments';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FilterModel } from '../models';

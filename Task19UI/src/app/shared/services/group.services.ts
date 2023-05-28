@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GroupModelDTO } from '../models/group.model';
 import { EventModel } from '../models/event.model';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/enviroments';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { EventInfoModel } from '../models/eventsInfo.model';

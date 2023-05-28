@@ -21,6 +21,7 @@ namespace Task19API.Service
         {
             try
             {
+                return null;
                 var countUser = 0;
                 var countUsers = await _context.Users
                     .ToListAsync();
