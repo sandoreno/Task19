@@ -56,8 +56,9 @@ export class StartPageComponent {
     await lastValueFrom(t.userService.RegisterUser(user))
     .then(response => {
       if(response){
+        localStorage['idUser'] = response;
+        //t.userService.setCredential(response);
         t.router.navigate(['catalog']);
-        t.userService.setCredential(response);
       }
       else{
         t.router.navigate(['tests']);

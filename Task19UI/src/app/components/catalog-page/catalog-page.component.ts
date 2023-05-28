@@ -28,28 +28,32 @@ export class CatalogPageComponent implements OnInit {
 
   constructor(
     private groupService: GroupService,
-    private userService: UserService, 
+    private userService: UserService,
     private filterService: FilterService,
     private modalService: ModalService,
-    private router: Router) { 
-      let t = this;
-      t.userId = () => {
-        if(t.userService.credentials$){
-          return t.userService.credentials$; //заглушка поправить
-        }
-        else{
-          t.router.navigate(['dashboard'])
-        }
-        return 0;
+    private router: Router) {
+    let t = this;
+    t.userId = () => {
+      if (t.userService.credentials$) {
+        return t.userService.credentials$; //заглушка поправить
       }
-     }
+      else {
+        //t.router.navigate(['dashboard'])
+      }
+      return 0;
+    }
+  }
+
+  loader = true;
 
   ngOnInit(): void {
     let t = this;
     t.eventModel.uniqueNumber = t.userId();
     //t.id = 101346559;
-    t.eventModel.uniqueNumber = t.userId();
-    console.log(t.userId());
+    //console.log(localStorage['id']);
+    //t.eventModel.uniqueNumber = t.userId();
+    //console.log(t.userId());
+    t.eventModel.uniqueNumber = localStorage['idUser'];
     t.PostIdUser(t.eventModel, t.eventInfo);
     t.postFilter(t.filterModel);
   }
@@ -84,7 +88,7 @@ export class CatalogPageComponent implements OnInit {
       })
       .catch(ex => {
         t.modalService.showErrorModal(ex);
-            })
+      })
       .finally(() => {
       })
   }

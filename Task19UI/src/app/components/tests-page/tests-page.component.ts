@@ -21,7 +21,7 @@ export class TestsPageComponent implements OnInit{
   }
   getAvailableAnswerCount: () => number;
   getCheckedCount: () => number;
-  
+
   constructor(
     private testService: TestService,
     private router: Router,
