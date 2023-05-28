@@ -9,7 +9,7 @@ namespace Task19API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestController : ControllerBase
+    public class TestController : Controller
     {
         private readonly ITest _test;
 

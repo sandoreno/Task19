@@ -18,7 +18,7 @@ export class ModalService {
             {
                 modalDialogClass: 'main-modal-custom',
                 centered: true,
-                size: 'sm',
+                size: 'md',
                 windowClass: 'super-modal-delete-users very-nice-shadow',
                 animation: true
             });

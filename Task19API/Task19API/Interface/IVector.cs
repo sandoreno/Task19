@@ -4,6 +4,6 @@ namespace Task19API.Interface
 {
     public interface IVector
     {
-        public Task<List<int>> Vector(TestModelResponse model);
+        public Task<VectorModel> Vector(TestModelResponse model);
     }
 }

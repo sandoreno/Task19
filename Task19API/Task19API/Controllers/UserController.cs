@@ -11,7 +11,7 @@ namespace Task19API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : Controller
     {
         private readonly IUser _userId;
 
@@ -27,10 +27,6 @@ namespace Task19API.Controllers
             {
                 // получаем юзера по входным данным
                 var userId = await _userId.GetUser(user);
-                if (userId == null)
-                {
-                    throw new Exception("not user");
-                }
 
                 return Ok(userId);
             }

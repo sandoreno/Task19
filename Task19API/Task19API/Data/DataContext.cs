@@ -9,6 +9,7 @@ namespace Task19API.Data
 
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Answertolvl> Answertolvls { get; set; }
+        public DbSet<ItemToId> ItemToIds { get; set; }
         public DbSet<Dict> Dicts { get; set; }
         public DbSet<Groups> Groups { get; set; }
         public DbSet<Question> Questions { get; set; }
@@ -17,6 +18,15 @@ namespace Task19API.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ItemToId>(entity =>
+            {
+                entity
+                    .HasNoKey()
+                    .ToTable("item_to_id");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.UniqueNumber).HasColumnName("unique_number");
+            });
             modelBuilder.Entity<Answer>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("answer_pkey");

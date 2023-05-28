@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { QuestionModel } from 'src/app/shared/models/question.model';
+import { TestModel } from 'src/app/shared/models/test.model';
 import { TestService } from 'src/app/shared/services/test.service';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/shared/services';
 import { AvailableAnswerCount } from 'src/app/shared/constans';
+import { TestResponseModel } from 'src/app/shared/models';
+import { QuestionModel } from 'src/app/shared/models/question.model';
 
 @Component({
   selector: 'app-tests-page',
@@ -12,7 +14,11 @@ import { AvailableAnswerCount } from 'src/app/shared/constans';
   styleUrls: ['./tests-page.component.scss']
 })
 export class TestsPageComponent implements OnInit{
-  questionModel: QuestionModel;
+  testModel: TestModel;
+  answerModel: TestResponseModel = {
+    questionId: 1,
+    answerId: []
+  }
   getAvailableAnswerCount: () => number;
   getCheckedCount: () => number;
 
@@ -23,11 +29,11 @@ export class TestsPageComponent implements OnInit{
     ){
       let t = this;
       t.getAvailableAnswerCount = () => {
-        let result = AvailableAnswerCount.find(element => element.level_id == this.questionModel.level_id);
+        let result = AvailableAnswerCount.find(element => element.level_id == this.testModel.question.questionId);
         return result.answerCount ?? 3;
       }
       t.getCheckedCount = () => {
-        let result = t.questionModel.answers.filter(elem => elem.isChecked).length;
+        let result = t.testModel.answerModels.filter(elem => elem.isChecked).length;
         return result;
       }
     }
@@ -37,26 +43,37 @@ export class TestsPageComponent implements OnInit{
 
   public async getQuestion() {
    let t = this;
-   t.questionModel = t.testService.GetQuestion()
+   await lastValueFrom(t.testService.SendAnswer(t.answerModel))
+   .then(response => {
+    t.testModel = response;
+   })
+   .catch(ex => {
+    t.modalService.showErrorModal(ex)
+   })
   }
 
   public async sendAnswer(){
     let t = this;
-    if(t.questionModel.level_id == 3){
+    if(t.testModel.question.questionId == 3){
       t.router.navigate(['catalog']);
       return;
     }
-    let questionToSend = t.questionModel;
-    questionToSend.answers = t.questionModel.answers.filter(elem => elem.isChecked);
-    if(questionToSend.answers.length > t.getAvailableAnswerCount()){
+    if(t.getCheckedCount() > t.getAvailableAnswerCount()){
       t.modalService.showErrorModal("Выберите меньшее количество категорий")
     }
-    t.questionModel = t.testService.SendAnswers(questionToSend);
+    t.answerModel.answerId = [];
+    t.testModel.answerModels.forEach(answer => {
+      if(answer.isChecked){
+        t.answerModel.answerId.push(answer.id);
+      }
+    });
+    t.answerModel.questionId++;
+    t.getQuestion();
   }
 
   public isDisabled(): boolean{
     let t = this;
-    return t.questionModel.answers.filter(elem => elem.isChecked).length >= t.getAvailableAnswerCount();
+    return t.testModel.answerModels.filter(elem => elem.isChecked).length >= t.getAvailableAnswerCount();
   }
 }
 

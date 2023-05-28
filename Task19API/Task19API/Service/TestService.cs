@@ -44,25 +44,28 @@ namespace Task19API.Service
                     // для 3 уровня
                     //var ansvers = await _context.Answers.Include(x => x.Answertolvl).ToListAsync();
 
+                    //var answertolvl = await _context.Answertolvls.Include(x => x.Answer).Distinct().ToListAsync();
+
                     var lvl = await _context.Answertolvls
                         .Where(x => question.AnswerId
                         .Contains((int)x.AnswerId))
                         .Select(x => x.GroupId)
                         .ToListAsync();
+
                     // для 2 уровня
-                    var dict = new List<int?>(); 
+                    var dict = new List<int?>();
                     if (question.QuestionId == 2)
                     {
-                         dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel1)).Select(x => x.IdLevel2).Distinct().ToListAsync();
+                        dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel1)).Select(x => x.IdLevel2).Distinct().ToListAsync();
                     }
                     // для 3 уровня
                     if (question.QuestionId == 3)
                     {
-                         dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel2)).Select(x => x.IdLevel3).Distinct().ToListAsync();
+                        dict = await _context.Dicts.Where(x => lvl.Contains(x.IdLevel2)).Select(x => x.IdLevel3).Distinct().ToListAsync();
                     }
                     data.answerModels = await _context.Answertolvls
-                        .Where(x=> dict.Contains(x.GroupId))
-                        .Include(x=> x.Answer)
+                        .Where(x => dict.Contains(x.GroupId))
+                        .Include(x => x.Answer)
                         .Select(x => new AnswerModel { Id = x.Answer.Id, Answer = x.Answer.Answer1 })
                         .Distinct()
                         .ToListAsync();
