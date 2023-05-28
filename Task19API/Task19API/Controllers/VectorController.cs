@@ -33,20 +33,21 @@ namespace Task19API.Controllers
                 var vector = await _vector.Vector(model);
                 string toResponse = String.Join(",", vector.vector);
 
-                //using var client = new HttpClient();
+                using var client = new HttpClient();
 
-                //var vectorString = await client.GetAsync($"http://localhost:8000/recommend/{toResponse}/10");
-                //var level3 = await client.GetAsync($"http://localhost:8000/find_similar/{vector.level3}");
+                var vectorString = await client.GetAsync($"http://localhost:8000/recommend/{toResponse}/10");
+                var level3 = await client.GetAsync($"http://localhost:8000/find_similar/{vector.level3}");
+                
+                var normVector = await _norm.NormalizeResponse(vectorString);
+                var normFuture = await _norm.NormalizeResponse(level3);
 
-                //var normVector = await _norm.NormalizeResponse(vectorString);
-                //var normFuture = await _norm.NormalizeResponse(level3);
+                vectorResponse.vectorRec = await _desc.groupsDesc(normVector);
+                vectorResponse.newRec = await _desc.groupsDesc(normFuture);
 
-                //vectorResponse.vectorRec = await _desc.groupsDesc(normVector);
-                //vectorResponse.newRec = await _desc.groupsDesc(normFuture);
-                var list1 = new List<int> { 801357282, 801373830, 801371594, 801370979, 801370874 };
-                var list2 = new List<int> { 801350310, 801371388, 801371686, 801370979, 801368178 };
-                vectorResponse.vectorRec = await _desc.groupsDesc(list1);
-                vectorResponse.newRec = await _desc.groupsDesc(list2);
+                //var list1 = new List<int> { 801357282, 801373830, 801371594, 801370979, 801370874 };
+                //var list2 = new List<int> { 801350310, 801371388, 801371686, 801370979, 801368178 };
+                //vectorResponse.vectorRec = await _desc.groupsDesc(list1);
+                //vectorResponse.newRec = await _desc.groupsDesc(list2);
 
                 return vectorResponse;
             }

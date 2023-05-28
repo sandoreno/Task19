@@ -12,14 +12,17 @@ export class UserService {
   errorMessage: String = "HttpError";
 
   setCredential(value: any) {
-    var t = this;
-    //var credentialSubject = new BehaviorSubject<any>(value);
-    t.credentials$ = value;
+    sessionStorage.setItem('userId', value);
   }
 
-  public getId(){
-    return this.credentials$;
+  getCredential(){
+    return sessionStorage.getItem('userId');
   }
+
+  clearCredential(){
+    sessionStorage.removeItem('userId');
+  }
+  
   constructor(private http: HttpClient) { }
 
   public RegisterUser(user: UserModel): Observable<number> {
