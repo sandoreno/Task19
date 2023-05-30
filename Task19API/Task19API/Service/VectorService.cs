@@ -32,7 +32,7 @@ namespace Task19API.Service
                         .Where(x => modelIds.Contains(x.IdLevel3))
                         .Select(x => x.Level3)
                         .ToListAsync();
-                
+
                 var contextGroups = await _context.Groups.ToListAsync();
                 var uniqueNumber = contextGroups
                     .Where(x => dict.Contains(x.DirectionThree))
@@ -45,7 +45,7 @@ namespace Task19API.Service
                     .Where(x => uniqueNumber.Contains(x.UniqueNumber))
                     .Select(x => x.Id)
                     .ToList();
-                    
+
 
                 var idlevel3 = await _context.Dicts
                     .Where(x => modelIds.Contains(x.IdLevel3))
@@ -62,6 +62,7 @@ namespace Task19API.Service
                     .Replace("ОНЛАЙН", "")
                     .Replace("-", " ")
                     .Replace("(", " ")
+                    .Replace("/", " ")
                     .Replace(")", " ")
                     .Replace("=", " ")
                     .ToLower();

@@ -23,6 +23,8 @@ services:
     build:
       context: ./Task19API
       dockerfile: ./Task19API/Dockerfile
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - 6578:8800
     environment:
