@@ -35,8 +35,8 @@ namespace Task19API.Controllers
 
                 using var client = new HttpClient();
 
-                var vectorString = await client.GetAsync($"http://localhost:8000/recommend/{toResponse}/10");
-                var level3 = await client.GetAsync($"http://localhost:8000/find_similar/{vector.level3}");
+                var vectorString = await client.GetAsync($"http://host.docker.internal:8000/recommend/{toResponse}/10");
+                var level3 = await client.GetAsync($"http://host.docker.internal:8000/find_similar/{vector.level3}");
                 
                 var normVector = await _norm.NormalizeResponse(vectorString);
                 var normFuture = await _norm.NormalizeResponse(level3);

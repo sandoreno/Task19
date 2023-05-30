@@ -37,7 +37,7 @@ namespace Task19API.Controllers
                 //
 
                 using var client = new HttpClient();
-                var scrobblesResponse = await client.GetAsync($"http://localhost:8000/recommend_for_user/{user.UniqueNumber}/10");
+                var scrobblesResponse = await client.GetAsync($"http://host.docker.internal:8000/recommend_for_user/{user.UniqueNumber}/10");
                 //var scrobble = await _norm.NormalizeResponse(scrobblesResponse);
 
                 //var scrobbleGroups = await _desc.groupsDesc(new List<int> { 801347688 });

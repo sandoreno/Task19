@@ -51,7 +51,7 @@ export class TestsPageComponent implements OnInit{
         return result;
       }
     }
-  }
+  
   ngOnInit(): void {
     this.getQuestion();
   }
